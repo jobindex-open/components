@@ -1,8 +1,6 @@
 # https://github.com/marketplace/actions/github-action-for-yarn
 name: CI
-on:
-    push:
-        branches: [main]
+on: [push]
 
 jobs:
     build:
