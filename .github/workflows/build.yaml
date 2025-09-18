@@ -41,7 +41,7 @@ jobs:
               uses: actions/upload-artifact@v4
               with:
                   name: dist
-                  path: packages/pdfjs-vue/dist/
+                  path: packages/pdfjs-vue/
 
             # - name: Publish packages
             #   working-directory: packages/vue-pdf
