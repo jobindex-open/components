@@ -37,6 +37,12 @@ jobs:
               with:
                   cmd: build
 
+            - name: Create artifact
+              uses: actions/upload-artifact@v4
+              with:
+                  name: dist
+                  path: packages/*/dist/
+
             # - name: Publish packages
             #   working-directory: packages/vue-pdf
             #   uses: borales/actions-yarn@v5
@@ -44,3 +50,16 @@ jobs:
             #       cmd: publish --access public
             #   env:
             #       NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+    release:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: write
+        steps:
+            - uses: actions/checkout@v5
+            - uses: actions/download-artifact@v5
+              with:
+                  name: dist
+            - uses: ncipollo/release-action@v1
+              with:
+                  artifacts: 'pdfjs-vue/dist'
