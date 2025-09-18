@@ -8,7 +8,7 @@ import {
 
 import { usePDF } from '../composables/use-pdf';
 import PDFViewport from './viewer/PDFViewport.vue';
-import { watch, type Ref, type ShallowRef } from 'vue';
+import { onMounted, onUnmounted, watch, type Ref, type ShallowRef } from 'vue';
 import LoadingSpinner from './util/LoadingSpinner.vue';
 import { HORIZONTAL_PADDING, VERTICAL_PADDING } from '../lib/constants';
 import type { PDFDocumentProxy } from 'pdfjs-dist';
@@ -36,8 +36,6 @@ const { pdf, loading, progress } =
 const controller = props.controller ?? useViewController();
 const appContainer = controller.appContainer;
 
-//const { pdf, loading, progress } = usePDF(props.documentSrc);
-
 watch(pdf, () => {
     if (!pdf.value) return;
     controller.pdf = pdf;
@@ -49,6 +47,20 @@ watch(pdf, () => {
             controller.firstPage.value = page;
         })
         .catch(() => {});
+});
+
+// Make sure to set fullscreen state correctly
+const fullscreenChangeHandler = () => {
+    if (document.fullscreenElement) return;
+    controller.state.isFullscreen = false;
+};
+
+onMounted(() => {
+    document.addEventListener('fullscreenchange', fullscreenChangeHandler);
+});
+
+onUnmounted(() => {
+    document.removeEventListener('fullscreenchange', fullscreenChangeHandler);
 });
 </script>
 

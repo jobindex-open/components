@@ -236,14 +236,24 @@ const viewController = (config?: DeepPartial<ViewOptions>) => {
 
     const enterFullscreen = () => {
         logger.trace('enterFullScreen');
+
+        if (!document.fullscreenEnabled) {
+            logger.debug('Fullscreen not available');
+            return;
+        }
+
         if (!options.allowFullscreen) {
             logger.debug('Fullscreen not allowed');
             return;
         }
+
         if (!appContainer.value) {
-            logger.warn('Could not enter fullscreen, app view not found');
+            logger.warn(
+                'Could not enter fullscreen, app container not defined'
+            );
             return;
         }
+
         appContainer.value
             .requestFullscreen()
             .then(() => {
@@ -254,12 +264,12 @@ const viewController = (config?: DeepPartial<ViewOptions>) => {
 
     const exitFullscreen = () => {
         logger.trace('exitFullScreen');
-        document
-            .exitFullscreen()
-            .then(() => {
-                state.isFullscreen = false;
-            })
-            .catch(() => {});
+
+        state.isFullscreen = false;
+
+        if (!document.fullscreenElement) return;
+
+        document.exitFullscreen().catch(() => {});
     };
 
     const toggleFullscreen = () => {
