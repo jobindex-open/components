@@ -7,7 +7,7 @@
     "type": "module",
     "scripts": {
         "dev": "yarn workspace playground dev",
-        "test": "yarn workspaces run test",
+        "test": "yarn workspace pdfjs-vue-viewer run test",
         "build": "yarn workspaces run build",
         "preview": "yarn workspace playground preview",
         "lint": "eslint .",
