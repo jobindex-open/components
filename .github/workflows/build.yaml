@@ -41,7 +41,7 @@ jobs:
               uses: actions/upload-artifact@v4
               with:
                   name: dist
-                  path: packages/*/dist/
+                  path: packages/pdfjs-vue/dist/
 
             # - name: Publish packages
             #   working-directory: packages/vue-pdf
@@ -51,17 +51,17 @@ jobs:
             #   env:
             #       NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-    release:
-        needs: build
-        if: github.event_name == 'push' && contains(github.ref, 'refs/tags/v')
-        runs-on: ubuntu-latest
-        permissions:
-            contents: write
-        steps:
-            - uses: actions/checkout@v5
-            - uses: actions/download-artifact@v5
-              with:
-                  name: dist
-            - uses: ncipollo/release-action@v1
-              with:
-                  artifacts: 'pdfjs-vue/dist'
+    # release:
+    #     needs: build
+    #     if: github.event_name == 'push' && contains(github.ref, 'refs/tags/v')
+    #     runs-on: ubuntu-latest
+    #     permissions:
+    #         contents: write
+    #     steps:
+    #         - uses: actions/checkout@v5
+    #         - uses: actions/download-artifact@v5
+    #           with:
+    #               name: dist
+    #         - uses: ncipollo/release-action@v1
+    #           with:
+    #               artifacts: 'pdfjs-vue/dist'
