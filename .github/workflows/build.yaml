@@ -1,0 +1,46 @@
+# https://github.com/marketplace/actions/github-action-for-yarn
+name: CI
+on: [push]
+
+jobs:
+    build:
+        name: Test and Build
+        runs-on: ubuntu-latest
+        steps:
+            # Checkout project
+            - uses: actions/checkout@v5
+
+            # Use node 22
+            - name: Set Node.js 22.x
+              uses: actions/setup-node@v5
+              with:
+                  node-version: 22.x
+                  # registry-url: https://registry.npmjs.org
+
+            # yarn install
+            - name: Install
+              uses: borales/actions-yarn@v5
+              with:
+                  cmd: install
+              # env:
+              #   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # if needed
+
+            # yarn test
+            - name: Test
+              uses: borales/actions-yarn@v5
+              with:
+                  cmd: test
+
+            # yarn build
+            - name: Build production bundle
+              uses: borales/actions-yarn@v5
+              with:
+                  cmd: build
+
+            # - name: Publish packages
+            #   working-directory: packages/vue-pdf
+            #   uses: borales/actions-yarn@v5
+            #   with:
+            #       cmd: publish --access public
+            #   env:
+            #       NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
