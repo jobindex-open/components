@@ -30,6 +30,7 @@
                     nodePackages.prettier
                     nodePackages.typescript-language-server
                     vue-language-server
+                    yaml-language-server
                   ];
 
                   languages.javascript = {
