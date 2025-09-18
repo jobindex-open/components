@@ -1,6 +1,8 @@
 # https://github.com/marketplace/actions/github-action-for-yarn
 name: CI
-on: [push]
+on:
+    push:
+        branches: [main]
 
 jobs:
     build:
@@ -53,6 +55,7 @@ jobs:
 
     release:
         needs: build
+        if: github.event_name == 'push' && contains(github.ref, 'refs/tags/v')
         runs-on: ubuntu-latest
         permissions:
             contents: write
