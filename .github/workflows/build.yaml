@@ -52,6 +52,7 @@ jobs:
             #       NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     release:
+        needs: build
         runs-on: ubuntu-latest
         permissions:
             contents: write
