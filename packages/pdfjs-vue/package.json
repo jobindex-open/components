@@ -1,7 +1,7 @@
 {
     "name": "pdfjs-vue-viewer",
     "type": "module",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "",
     "author": "",
     "license": "MIT",
@@ -10,10 +10,7 @@
         "url": "git+https://github.com/.git",
         "directory": "packages/core"
     },
-    "keywords": [
-        "vue",
-        "pdfjs"
-    ],
+    "keywords": ["vue", "pdfjs"],
     "exports": {
         ".": {
             "types": "./dist/index.d.ts",
@@ -25,16 +22,14 @@
     "main": "./dist/index.umd.cjs",
     "module": "./dist/index.js",
     "types": "./dist/index.d.ts",
-    "files": [
-        "dist"
-    ],
+    "files": ["dist"],
     "scripts": {
         "dev": "vite",
-        "build": "yarn build:vite && yarn build:types",
+        "build": "yarn build:tsdown",
         "build:vite": "vite build",
-        "build:tsdown": "tsdown --form-vite",
+        "build:tsdown": "tsdown",
         "build:tsdown-watch": "tsdown --watch",
-        "build:types": "vue-tsc --declaration --emitDeclarationOnly -p tsconfig.app.json",
+        "build:types": "vue-tsc --declaration --emitDeclarationOnly -p tsconfig.build.json",
         "lint": "eslint 'src/**/*.{ts,vue}'",
         "test": "vitest",
         "test:coverage": "vitest run --coverage"
