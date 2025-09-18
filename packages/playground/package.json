@@ -1,0 +1,25 @@
+{
+    "name": "playground",
+    "private": true,
+    "version": "0.1.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview"
+    },
+    "dependencies": {
+        "pdfjs-vue-viewer": "*"
+    },
+    "peerDependencies": {
+        "vue": "^3.5.18"
+    },
+    "devDependencies": {
+        "@vitejs/plugin-vue": "^6.0.1",
+        "@vue/tsconfig": "^0.7.0",
+        "typescript": "~5.8.3",
+        "unocss": "^66.5.1",
+        "vite": "^7.1.2",
+        "vue-tsc": "^3.0.5"
+    }
+}

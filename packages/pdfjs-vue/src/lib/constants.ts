@@ -1,0 +1,9 @@
+export const SCALE_MAX = 4.0;
+export const SCALE_MIN = 0.25;
+export const SCALE_STEP = 0.2;
+export const SCALE_FACTOR = 1;
+export const SCALE_DEFAULT = 1;
+export const SCALE_OPTIONS = [0.5, 1, 1.5, 2, 3, 4];
+export const SCALE_MAX_AUTO = 1.25;
+export const HORIZONTAL_PADDING = 20;
+export const VERTICAL_PADDING = 20;
