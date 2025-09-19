@@ -7,19 +7,19 @@ A Vue 3 PDF viewer component using Mozillas [pdf.js](https://github.com/mozilla/
 Npm:
 
 ```sh
-npm i <package-name-here>
+npm i pdfjs-dist <package-name-here>
 ```
 
 Yarn:
 
 ```sh
-yarn add <package-name-here>
+yarn add pdfjs-dist pdfjs-vue@https://github.com/jobindex-open/pdfjs-vue/releases/download/v0.1.1/dist.tar.gz
 ```
 
 Pnpm:
 
 ```sh
-pnpm i <package-name-here>
+pnpm i pdfjs-dist <package-name-here>
 ```
 
 ## Usage
@@ -28,7 +28,8 @@ Basic usage:
 
 ```vue
 <script setup>
-import { PDFViewer } from 'pdfjs-vue-viewer';
+import { PDFViewer } from 'pdfjs-vue';
+import 'pdfjs-vue/style.css';
 </script>
 
 <template>
@@ -41,6 +42,15 @@ import { PDFViewer } from 'pdfjs-vue-viewer';
     />
 </template>
 ```
+
+## Credits:
+
+- PDF engine: [pdf.js](https://github.com/mozilla/pdf.js)
+- Icons used: [Iconoir](https://iconoir.com/)
+
+## Simmilar projects:
+
+- [vue-pdf by TaTo30](https://github.com/TaTo30/vue-pdf)
 
 ## TODO:
 
