@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { PDFViewer, usePDF, useViewController } from 'pdfjs-vue-viewer';
+import { PDFViewer, usePDF, useViewController } from 'pdfjs-vue';
+import 'pdfjs-vue/style.css';
 
 const controller = useViewController({
     scale: {
