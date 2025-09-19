@@ -2,15 +2,27 @@
     "name": "pdfjs-vue",
     "type": "module",
     "version": "0.1.1",
-    "description": "",
-    "author": "",
-    "license": "MIT",
+    "description": "A PDF Viewer for Vue3 built with pdf.js",
+    "contributors": [
+        "David Koch Gregersen <dkg@tuta.io> (https://github.com/hyenabyte)"
+    ],
+    "license": "BSD-3-Clause",
+    "homepage": "https://github.com/jobindex-open/pdfjs-vue",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/.git",
-        "directory": "packages/core"
+        "url": "git+https://github.com/jobindex-open/pdfjs-vue.git",
+        "directory": "packages/pdfjs-vue"
     },
-    "keywords": ["vue", "pdfjs"],
+    "bugs": {
+        "url": "https://github.com/jobindex-open/pdfjs-vue/issues"
+    },
+    "keywords": [
+        "vue",
+        "pdfjs",
+        "pdf",
+        "document",
+        "viewer"
+    ],
     "exports": {
         ".": {
             "types": "./dist/index.d.ts",
@@ -22,7 +34,9 @@
     "main": "./dist/index.umd.cjs",
     "module": "./dist/index.js",
     "types": "./dist/index.d.ts",
-    "files": ["dist"],
+    "files": [
+        "dist"
+    ],
     "scripts": {
         "dev": "vite",
         "build": "yarn build:vite && yarn build:types",
