@@ -1,10 +1,8 @@
 {
     "name": "pdfjs-vue-workspace",
-    "version": "0.1.0",
-    "license": "",
+    "version": "1.0.0",
     "private": true,
     "packageManager": "yarn@1.22.22",
-    "type": "module",
     "scripts": {
         "dev": "yarn workspace playground dev",
         "test": "yarn workspace pdfjs-vue run test",
