@@ -11,43 +11,50 @@
     extra-substituters = "https://devenv.cachix.org";
   };
 
-  outputs = { nixpkgs, devenv, systems, ... } @ inputs:
+  outputs =
+    {
+      nixpkgs,
+      devenv,
+      systems,
+      ...
+    }@inputs:
     let
       forEachSystem = nixpkgs.lib.genAttrs (import systems);
     in
     {
-      devShells = forEachSystem
-        (system:
-          let
-            pkgs = nixpkgs.legacyPackages.${system};
-          in
-          {
-            default = devenv.lib.mkShell {
-              inherit inputs pkgs;
-              modules = [
-                {
-                  packages = with pkgs; [
-                    nodePackages.prettier
-                    nodePackages.typescript-language-server
-                    vue-language-server
-                    yaml-language-server
-                  ];
+      devShells = forEachSystem (
+        system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+        in
+        {
+          default = devenv.lib.mkShell {
+            inherit inputs pkgs;
+            modules = [
+              {
+                packages = with pkgs; [
+                  nodePackages.prettier
+                  nodePackages.typescript-language-server
+                  vue-language-server
+                  yaml-language-server
+                ];
 
-                  languages.javascript = {
-                    enable = true;
-                    pnpm.enable = true;
-                    yarn.enable = true;
-                  };
+                languages.javascript = {
+                  enable = true;
+                  pnpm.enable = true;
+                  yarn.enable = true;
+                };
 
-                  languages.typescript.enable = true;
+                languages.typescript.enable = true;
 
-                  git-hooks.hooks = {
-                    eslint.enable = true;
-                    prettier.enable = true;
-                  };
-                }
-              ];
-            };
-          });
+                git-hooks.hooks = {
+                  eslint.enable = true;
+                  prettier.enable = true;
+                };
+              }
+            ];
+          };
+        }
+      );
     };
 }
