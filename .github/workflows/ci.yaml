@@ -81,11 +81,10 @@ jobs:
               with:
                   name: packages
 
-            # - name: Use Node.js 22.x
-            #   uses: actions/setup-node@v5
-            #   with:
-            #       node-version: 22.x
-            #       cache: 'yarn'
+            - uses: actions/setup-node@v5
+              with:
+                  node-version: '22.x'
+                  registry-url: 'https://registry.npmjs.org'
 
             # - name: Create GH release
             #   uses: ncipollo/release-action@v1
@@ -93,7 +92,7 @@ jobs:
             #       artifacts: 'pdfjs-vue/dist'
 
             - name: Publish @jobindex/pdf-viewer
-              run: cd pdf-viewer/ && npm publish --access public
+              run: cd pdf-viewer/ && npm publish
 
             # - name: Publish packages
             #   working-directory: packages/vue-pdf
