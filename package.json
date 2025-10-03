@@ -5,9 +5,7 @@
     "scripts": {
         "dev": "turbo run dev",
         "test": "turbo run test",
-        "test:ci": "turbo run test:ci",
-        "build": "turbo run build",
-        "build:types": "turbo run build:types",
+        "build": "turbo run build build:types",
         "lint": "turbo run lint",
         "format": "prettier -w ."
     },

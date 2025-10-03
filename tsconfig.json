@@ -5,13 +5,13 @@
             "path": "./tsconfig.config.json"
         },
         {
-            "path": "./packages/pdfjs-vue/tsconfig.app.json"
+            "path": "./packages/pdf-viewer/tsconfig.app.json"
         },
         {
-            "path": "./packages/pdfjs-vue/tsconfig.vitest.json"
+            "path": "./packages/pdf-viewer/tsconfig.vitest.json"
         },
         {
-            "path": "./packages/playground/tsconfig.app.json"
+            "path": "./apps/playground/tsconfig.app.json"
         }
     ]
 }

@@ -40,13 +40,13 @@
     ],
     "scripts": {
         "dev": "vite",
-        "build": "yarn build:vite && yarn build:types",
-        "build:vite": "vite build",
+        "build:all": "yarn build:vite && yarn build:types",
+        "build": "vite build",
         "build:types": "vue-tsc --declaration --emitDeclarationOnly -p tsconfig.app.json",
         "lint": "eslint 'src/**/*.{ts,vue}'",
-        "test": "vitest",
-        "test:ci": "vitest run",
-        "test:coverage": "vitest run --coverage"
+        "test:watch": "vitest",
+        "test": "vitest run",
+        "coverage": "vitest run --coverage"
     },
     "peerDependencies": {
         "vue": "^3.5.0"

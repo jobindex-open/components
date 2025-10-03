@@ -1,0 +1,106 @@
+name: CI
+
+on:
+    push:
+        branches: ['main']
+    pull_request:
+        types: [opened, synchronize]
+
+env:
+    TURBO_TELEMETRY_DISABLED: 1
+
+jobs:
+    lint:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v5
+
+            - name: Pre-install yarn
+              run: npm install -g yarn
+
+            - name: Use Node.js 22.x
+              uses: actions/setup-node@v5
+              with:
+                  node-version: 22.x
+                  cache: 'yarn'
+
+            - name: Install dependencies
+              run: yarn
+
+            - name: Lint
+              run: yarn lint
+
+    build:
+        name: Build and Test
+        timeout-minutes: 15
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout source
+              uses: actions/checkout@v5
+              with:
+                  fetch-depth: 2
+
+            - name: Pre-install yarn
+              run: npm install -g yarn
+
+            - name: Use Node.js 22.x
+              uses: actions/setup-node@v5
+              with:
+                  node-version: 22.x
+                  cache: 'yarn'
+                  # registry-url: https://registry.npmjs.org
+
+            - name: Install
+              run: yarn
+
+            - name: Build production bundle
+              run: yarn build
+
+            - name: Test
+              run: yarn test
+
+            - name: Create artifact
+              uses: actions/upload-artifact@v4
+              with:
+                  name: packages
+                  path: packages/*/
+
+    release:
+        needs: build
+        # if: github.event_name == 'push' && contains(github.ref, 'refs/tags/v')
+        runs-on: ubuntu-latest
+        permissions:
+            contents: write
+        steps:
+            # - uses: actions/checkout@v5
+
+            - name: Get build files
+              uses: actions/download-artifact@v5
+              with:
+                  name: packages
+
+            - name: Pre-install yarn
+              run: npm install -g yarn
+
+            # - name: Use Node.js 22.x
+            #   uses: actions/setup-node@v5
+            #   with:
+            #       node-version: 22.x
+            #       cache: 'yarn'
+
+            # - name: Create GH release
+            #   uses: ncipollo/release-action@v1
+            #   with:
+            #       artifacts: 'pdfjs-vue/dist'
+
+            - name: Publish @jobindex/pdf-viewer
+              run: yarn publish --cwd ./pdf-viewer --access public
+
+            # - name: Publish packages
+            #   working-directory: packages/vue-pdf
+            #   uses: borales/actions-yarn@v5
+            #   with:
+            #       cmd: publish --access public
+            #   env:
+            #       NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
