@@ -92,7 +92,7 @@ jobs:
             #       artifacts: 'pdfjs-vue/dist'
 
             - name: Publish @jobindex/pdf-viewer
-              run: cd pdf-viewer/ && npm publish
+              run: cd pdf-viewer/ && npm publish --access public
 
             # - name: Publish packages
             #   working-directory: packages/vue-pdf
