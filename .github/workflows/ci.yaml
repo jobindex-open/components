@@ -68,7 +68,7 @@ jobs:
 
     release:
         needs: build
-        # if: github.event_name == 'push' && contains(github.ref, 'refs/tags/v')
+        if: github.event_name == 'push' && contains(github.ref, 'refs/tags/v')
         runs-on: ubuntu-latest
         permissions:
             contents: write
