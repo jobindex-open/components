@@ -81,9 +81,6 @@ jobs:
               with:
                   name: packages
 
-            - name: Pre-install yarn
-              run: npm install -g yarn
-
             # - name: Use Node.js 22.x
             #   uses: actions/setup-node@v5
             #   with:
@@ -96,7 +93,7 @@ jobs:
             #       artifacts: 'pdfjs-vue/dist'
 
             - name: Publish @jobindex/pdf-viewer
-              run: yarn publish --cwd ./pdf-viewer --access public
+              run: cd pdf-viewer/ && npm publish --access public
 
             # - name: Publish packages
             #   working-directory: packages/vue-pdf
