@@ -27,6 +27,8 @@ dist-ssr
 *.sw?
 
 *.tsbuildinfo
+.turbo
 
 .helix
 .pre-commit-config.yaml
+

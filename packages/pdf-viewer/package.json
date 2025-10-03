@@ -1,7 +1,7 @@
 {
     "name": "@jobindex/pdf-viewer",
     "type": "module",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "A PDF Viewer for Vue3 built with pdf.js",
     "contributors": [
         "David Koch Gregersen <dkg@tuta.io> (https://github.com/hyenabyte)"
@@ -35,7 +35,8 @@
     "module": "./dist/index.js",
     "types": "./dist/index.d.ts",
     "files": [
-        "dist"
+        "dist",
+        "README.md"
     ],
     "scripts": {
         "dev": "vite",
@@ -44,6 +45,7 @@
         "build:types": "vue-tsc --declaration --emitDeclarationOnly -p tsconfig.app.json",
         "lint": "eslint 'src/**/*.{ts,vue}'",
         "test": "vitest",
+        "test:ci": "vitest run",
         "test:coverage": "vitest run --coverage"
     },
     "peerDependencies": {

@@ -33,10 +33,16 @@
             modules = [
               {
                 packages = with pkgs; [
-                  nodePackages.prettier
+                  # Language servers
                   nodePackages.typescript-language-server
                   vue-language-server
                   yaml-language-server
+
+                  # Tools
+                  gh
+                  nodePackages.prettier
+                  turbo
+                  act
                 ];
 
                 languages.javascript = {
@@ -50,6 +56,7 @@
                 git-hooks.hooks = {
                   eslint.enable = true;
                   prettier.enable = true;
+                  nixfmt-rfc-style.enable = true;
                 };
               }
             ];

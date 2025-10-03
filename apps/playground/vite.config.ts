@@ -8,16 +8,16 @@ export default defineConfig({
     plugins: [vue(), UnoCSS()],
     resolve: {
         alias: {
-            'pdfjs-vue':
+            '@jobindex/pdf-viewer':
                 process.env.NODE_ENV === 'production'
-                    ? 'pdfjs-vue'
-                    : resolve(__dirname, '../pdfjs-vue/src/index.ts'),
+                    ? '@jobindex/pdf-viewer'
+                    : resolve(__dirname, '../pdf-viewer/src/index.ts'),
         },
     },
     build: {
         minify: false,
     },
     optimizeDeps: {
-        exclude: ['pdfjs-vue'],
+        exclude: ['@jobindex/pdf-viewer'],
     },
 });
