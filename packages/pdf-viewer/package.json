@@ -1,0 +1,66 @@
+{
+    "name": "@jobindex/pdf-viewer",
+    "type": "module",
+    "version": "0.1.2",
+    "description": "A PDF Viewer for Vue3 built with pdf.js",
+    "contributors": [
+        "David Koch Gregersen <dkg@tuta.io> (https://github.com/hyenabyte)"
+    ],
+    "license": "BSD-3-Clause",
+    "homepage": "https://github.com/jobindex-open/pdfjs-vue",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jobindex-open/pdfjs-vue.git",
+        "directory": "packages/pdf-viewer"
+    },
+    "bugs": {
+        "url": "https://github.com/jobindex-open/pdfjs-vue/issues"
+    },
+    "keywords": [
+        "vue",
+        "pdfjs",
+        "pdf",
+        "document",
+        "viewer"
+    ],
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "require": "./dist/index.umd.cjs",
+            "import": "./dist/index.js"
+        },
+        "./style.css": "./dist/index.css"
+    },
+    "main": "./dist/index.umd.cjs",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "files": [
+        "dist",
+        "README.md"
+    ],
+    "scripts": {
+        "dev": "vite",
+        "build:all": "yarn build:vite && yarn build:types",
+        "build": "vite build",
+        "build:types": "vue-tsc --declaration --emitDeclarationOnly -p tsconfig.app.json",
+        "lint": "eslint 'src/**/*.{ts,vue}'",
+        "test:watch": "vitest",
+        "test": "vitest run",
+        "coverage": "vitest run --coverage"
+    },
+    "peerDependencies": {
+        "vue": "^3.5.0"
+    },
+    "dependencies": {
+        "pdfjs-dist": "^5.4.54"
+    },
+    "devDependencies": {
+        "@types/node": "^24.3.1",
+        "@vitejs/plugin-vue": "^6.0.1",
+        "@vitest/coverage-v8": "3.2.4",
+        "typescript": "^5.9.2",
+        "vite": "^7.1.5",
+        "vitest": "^3.2.4",
+        "vue-tsc": "^3.0.6"
+    }
+}

@@ -6,21 +6,18 @@ import { resolve } from 'node:path';
 // https://vite.dev/config/
 export default defineConfig({
     plugins: [vue(), UnoCSS()],
-    server: {
-        allowedHosts: ['culpeo'],
-    },
     resolve: {
         alias: {
-            'pdfjs-vue-viewer':
+            '@jobindex/pdf-viewer':
                 process.env.NODE_ENV === 'production'
-                    ? 'pdfjs-vue-viewer'
-                    : resolve(__dirname, '../pdfjs-vue/src/index.ts'),
+                    ? '@jobindex/pdf-viewer'
+                    : resolve(__dirname, '../pdf-viewer/src/index.ts'),
         },
     },
     build: {
         minify: false,
     },
     optimizeDeps: {
-        exclude: ['pdfjs-vue-viewer'],
+        exclude: ['@jobindex/pdf-viewer'],
     },
 });

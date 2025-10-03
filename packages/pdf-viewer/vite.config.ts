@@ -10,7 +10,7 @@ export default defineConfig({
     build: {
         lib: {
             entry: resolve(__dirname, 'src/index.ts'),
-            name: 'pdfjs-vue-viewer',
+            name: 'pdf-viewer',
             fileName: 'index',
         },
         rollupOptions: {

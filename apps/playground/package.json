@@ -9,7 +9,7 @@
         "preview": "vite preview"
     },
     "dependencies": {
-        "pdfjs-vue-viewer": "*"
+        "@jobindex/pdf-viewer": "*"
     },
     "peerDependencies": {
         "vue": "^3.5.18"
