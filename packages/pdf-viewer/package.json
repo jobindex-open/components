@@ -1,5 +1,5 @@
 {
-    "name": "pdfjs-vue",
+    "name": "@jobindex/pdf-viewer",
     "type": "module",
     "version": "0.1.1",
     "description": "A PDF Viewer for Vue3 built with pdf.js",
@@ -11,7 +11,7 @@
     "repository": {
         "type": "git",
         "url": "git+https://github.com/jobindex-open/pdfjs-vue.git",
-        "directory": "packages/pdfjs-vue"
+        "directory": "packages/pdf-viewer"
     },
     "bugs": {
         "url": "https://github.com/jobindex-open/pdfjs-vue/issues"
