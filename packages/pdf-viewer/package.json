@@ -1,20 +1,20 @@
 {
     "name": "@jobindex/pdf-viewer",
     "type": "module",
-    "version": "0.1.2",
+    "version": "1.0.0",
     "description": "A PDF Viewer for Vue3 built with pdf.js",
     "contributors": [
         "David Koch Gregersen <dkg@tuta.io> (https://github.com/hyenabyte)"
     ],
     "license": "BSD-3-Clause",
-    "homepage": "https://github.com/jobindex-open/pdfjs-vue",
+    "homepage": "https://github.com/jobindex-open/components",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/jobindex-open/pdfjs-vue.git",
+        "url": "git+https://github.com/jobindex-open/components.git",
         "directory": "packages/pdf-viewer"
     },
     "bugs": {
-        "url": "https://github.com/jobindex-open/pdfjs-vue/issues"
+        "url": "https://github.com/jobindex-open/components/issues"
     },
     "keywords": [
         "vue",
