@@ -1,4 +1,4 @@
-import type { ScaleOption, Size } from 'src/types';
+import type { ScaleOption, Size } from '../types';
 import {
     HORIZONTAL_PADDING,
     SCALE_MAX_AUTO,

@@ -1,4 +1,4 @@
-import type { Vector2D } from 'src/types';
+import type { Vector2D } from '../types';
 
 export const add = (vecA: Vector2D, vecB: Vector2D): Vector2D => {
     return {

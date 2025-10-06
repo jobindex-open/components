@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ScaleMode, ScaleOption } from 'src/types';
+import type { ScaleMode, ScaleOption } from '../../types';
 import { ref, watch } from 'vue';
 
 const props = defineProps<{
@@ -22,6 +22,10 @@ const getOptionFromOptionString = (str: string): ScaleOption => {
     const mode = strParts[0] as ScaleMode;
 
     if (mode == 'absolute') {
+        if (!strParts[1]) {
+            throw new Error('Invalid scale option');
+        }
+
         const scl = Number.parseFloat(strParts[1]);
         return {
             mode: 'absolute',
@@ -73,8 +77,3 @@ watch(
         </option>
     </select>
 </template>
-
-<style scoped>
-.toolbar-zoom-selector {
-}
-</style>

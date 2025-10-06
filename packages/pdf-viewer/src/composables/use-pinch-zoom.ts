@@ -38,12 +38,10 @@ export const usePinchZoom = (
         };
     };
 
-    const _getTouchDistance = (touches: Touch[]) => {
-        if (touches.length <= 0) return 0;
-
+    const _getTouchDistance = (touchA: Touch, touchB: Touch) => {
         return distance(
-            { x: touches[0].clientX, y: touches[0].clientY },
-            { x: touches[1].clientX, y: touches[1].clientY }
+            { x: touchA.clientX, y: touchA.clientY },
+            { x: touchB.clientX, y: touchB.clientY }
         );
     };
 
@@ -63,10 +61,13 @@ export const usePinchZoom = (
     };
 
     const initialDistance = computed(() => {
-        if (touchCache.value.length < 2) {
+        const touchA = touchCache.value[0];
+        const touchB = touchCache.value[1];
+        if (!touchA || !touchB) {
             return 0;
         }
-        return _getTouchDistance(touchCache.value);
+
+        return _getTouchDistance(touchA, touchB);
     });
 
     const startHandler = (ev: TouchEvent) => {
@@ -100,6 +101,8 @@ export const usePinchZoom = (
 
         const initialPoint1 = touchCache.value[0];
         const initialPoint2 = touchCache.value[1];
+
+        if (!initialPoint1 || !initialPoint2) return;
 
         const currentTouches = _unpackTouchList(ev.touches);
 

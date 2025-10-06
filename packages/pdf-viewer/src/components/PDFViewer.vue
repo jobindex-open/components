@@ -28,7 +28,11 @@ interface PDFViewerProps {
 
 const props = defineProps<PDFViewerProps>();
 
-props.pdfjsWorker ? configureWorker(props.pdfjsWorker) : init();
+if (props.pdfjsWorker) {
+    configureWorker(props.pdfjsWorker);
+} else {
+    init();
+}
 
 const { pdf, loading, progress } =
     typeof props.pdf === 'string' ? usePDF(props.pdf) : props.pdf;
