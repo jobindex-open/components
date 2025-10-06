@@ -1,11 +1,5 @@
 {
-    "extends": "@jobindex/config-ts/vue.json",
-    "include": [
-        "."
-    ],
-    "exclude": [
-        "node_modules",
-        "dist",
-        "build"
-    ]
+    "extends": "@jobindex/config-ts/tsconfig.vue.json",
+    "include": ["."],
+    "exclude": ["node_modules", "dist", "build"]
 }
