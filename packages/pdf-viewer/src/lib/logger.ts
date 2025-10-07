@@ -1,3 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+
+// TODO(dakg): break this into its own lib, and rewrite.
+// Consider using an external library
+
 enum LogLevel {
     Trace,
     Debug,

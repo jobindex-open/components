@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, watch } from 'vue';
+import { watch } from 'vue';
 import { type ViewController } from '../../composables/use-view-controller';
 import { debounce } from '../../lib/util';
 import { usePinchZoom } from '../../composables/use-pinch-zoom';
@@ -15,21 +15,22 @@ watch(
 
         // Keep scroll offset in viewport when scaling
 
-        const origin = [
-            viewportContainer.value.scrollTop +
+        const origin = {
+            x:
+                viewportContainer.value.scrollTop +
                 viewportContainer.value.clientHeight / 2,
-            viewportContainer.value.scrollLeft +
+            y:
+                viewportContainer.value.scrollLeft +
                 viewportContainer.value.clientWidth / 2,
-        ];
+        };
 
         const scaleDifference = newScale / previousScale - 1;
         const top = viewportContainer.value.offsetTop;
         const left = viewportContainer.value.offsetLeft;
 
-        viewportContainer.value.scrollTop +=
-            (origin[0] - top) * scaleDifference;
+        viewportContainer.value.scrollTop += (origin.x - top) * scaleDifference;
         viewportContainer.value.scrollLeft +=
-            (origin[1] - left) * scaleDifference;
+            (origin.y - left) * scaleDifference;
     }
 );
 

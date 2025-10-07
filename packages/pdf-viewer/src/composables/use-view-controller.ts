@@ -8,7 +8,7 @@ import {
     SCALE_STEP,
 } from '../lib/constants';
 import { clamp, round } from '../lib/util';
-import type { DeepPartial, ScaleOption } from 'src/types';
+import type { DeepPartial, ScaleOption } from '../types';
 import type { PDFDocumentProxy, PDFPageProxy } from 'pdfjs-dist';
 import { scaleOptionToAbsolute, sortScaleOptions } from '../lib/scale-util';
 import { createLogger } from '../lib/logger';

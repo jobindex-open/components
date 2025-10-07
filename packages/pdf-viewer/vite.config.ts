@@ -14,37 +14,12 @@ export default defineConfig({
             fileName: 'index',
         },
         rollupOptions: {
-            external: [
-                'vue',
-                // 'pdfjs-dist'
-            ],
+            external: ['vue'],
             output: {
-                exports: 'named',
                 globals: {
-                    vue: 'Vue',
-                    'pdfjs-dist': 'pdfjs',
+                    vue: 'vue',
                 },
             },
         },
-    },
-
-    test: {
-        exclude: [
-            '**/node_modules/**',
-            '**/dist/**',
-            '**/cypress/**',
-            '**/.{idea,git,cache,output,temp,direnv,devenv}/**',
-            '**/{karma,rollup,webpack,vite,vitest,jest,ava,babel,nyc,cypress,tsup,build,eslint,prettier}.config.*',
-        ],
-        // browser: {
-        //     enabled: true,
-        //     provider: 'playwright',
-        //     // https://vitest.dev/guide/browser/playwright
-        //     instances: [
-        //         { browser: 'chromium' },
-        //         { browser: 'firefox' },
-        //         { browser: 'webkit' },
-        //     ],
-        // },
     },
 });
