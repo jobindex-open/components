@@ -1,4 +1,5 @@
-import type { ScaleOption, Size } from '../types';
+import type { Size } from '@jobindex/lib';
+import type { ScaleOption } from '../types';
 import {
     HORIZONTAL_PADDING,
     SCALE_MAX_AUTO,
