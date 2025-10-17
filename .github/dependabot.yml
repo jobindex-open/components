@@ -1,0 +1,21 @@
+version: 2
+updates:
+    - package-ecosystem: 'npm'
+      directory: '/'
+      schedule:
+          interval: 'weekly'
+
+    - package-ecosystem: 'npm'
+      directory: '/packages/pdf-viewer'
+      schedule:
+          interval: 'weekly'
+
+    - package-ecosystem: 'npm'
+      directory: '/packages/config-ts'
+      schedule:
+          interval: 'weekly'
+
+    - package-ecosystem: 'npm'
+      directory: '/apps/playground'
+      schedule:
+          interval: 'weekly'
