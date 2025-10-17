@@ -4,93 +4,152 @@ on:
     push:
         branches: ['main']
     pull_request:
-        types: [opened, synchronize]
+        branches: ['main']
 
 env:
     TURBO_TELEMETRY_DISABLED: 1
 
-permissions:
-    contents: read
-    id-token: write
-
 jobs:
     lint:
+        name: Lint
         runs-on: ubuntu-latest
 
         steps:
-            - uses: actions/checkout@v5
+            - uses: actions/checkout@v3
 
             - name: Pre-install yarn
               run: npm install -g yarn
 
-            - name: Use Node.js 22.x
-              uses: actions/setup-node@v5
+            - name: Install turbo
+              run: npm install -g turbo
+
+            - name: Setup Node
+              uses: actions/setup-node@v3
               with:
                   node-version: 22.x
                   cache: 'yarn'
 
             - name: Install dependencies
-              run: yarn
+              run: yarn install --frozen-lockfile
 
-            - name: Lint
-              run: yarn lint
+            - name: Cache Turbo
+              uses: actions/cache@v3
+              with:
+                  path: .turbo
+                  key: ${{ runner.os }}-turbo-${{ hashFiles('**/*.ts') }}
+                  restore-keys: |
+                      ${{ runner.os }}-turbo-
+
+            - name: Run lint
+              run: turbo run lint --cache-dir=".turbo"
+
+    build:
+        name: Build
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v3
+
+            - name: Pre-install yarn
+              run: npm install -g yarn
+
+            - name: Install turbo
+              run: npm install -g turbo
+
+            - name: Setup Node
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 22.x
+                  cache: 'yarn'
+
+            - name: Install dependencies
+              run: yarn install --frozen-lockfile
+
+            - name: Cache Turbo
+              uses: actions/cache@v3
+              with:
+                  path: .turbo
+                  key: ${{ runner.os }}-turbo-${{ hashFiles('**/*.ts') }}
+                  restore-keys: |
+                      ${{ runner.os }}-turbo-
+
+            - name: Run build
+              run: turbo run build --cache-dir=".turbo"
 
     test:
-        name: Test
-        timeout-minutes: 15
+        name: Test (Node ${{ matrix.node-version }})
         runs-on: ubuntu-latest
-        if: github.event_name != 'push' || github.ref != 'refs/heads/main'
+        needs: build
+
+        strategy:
+            matrix:
+                node-version: [20.x, 22.x]
+
         steps:
-            - name: Checkout source
-              uses: actions/checkout@v5
+            - uses: actions/checkout@v3
 
             - name: Pre-install yarn
               run: npm install -g yarn
 
-            - name: Use Node.js 22.x
-              uses: actions/setup-node@v5
+            - name: Install turbo
+              run: npm install -g turbo
+
+            - name: Setup Node
+              uses: actions/setup-node@v3
               with:
-                  node-version: 22.x
+                  node-version: ${{ matrix.node-version }}
                   cache: 'yarn'
 
-            - name: Install
-              run: yarn
+            - name: Install dependencies
+              run: yarn install --frozen-lockfile
 
-            - name: Test
-              run: yarn test
-
-    release:
-        name: Build and publish
-        timeout-minutes: 15
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout source
-              uses: actions/checkout@v5
+            - name: Cache Turbo
+              uses: actions/cache@v3
               with:
-                  fetch-depth: 2
+                  path: .turbo
+                  key: ${{ runner.os }}-turbo-${{ hashFiles('**/*.ts') }}
+                  restore-keys: |
+                      ${{ runner.os }}-turbo-
+
+            - name: Run tests
+              run: turbo run test --cache-dir=".turbo"
+
+    coverage:
+        name: Coverage
+        runs-on: ubuntu-latest
+        needs: build
+
+        steps:
+            - uses: actions/checkout@v3
 
             - name: Pre-install yarn
               run: npm install -g yarn
 
-            - name: Use Node.js 22.x
-              uses: actions/setup-node@v5
+            - name: Install turbo
+              run: npm install -g turbo
+
+            - name: Setup Node
+              uses: actions/setup-node@v3
               with:
                   node-version: 22.x
                   cache: 'yarn'
-                  registry-url: https://registry.npmjs.org
 
-            - name: Install
-              run: yarn
+            - name: Install dependencies
+              run: yarn install --frozen-lockfile
 
-            - name: Build production bundle
-              run: yarn build
+            - name: Cache Turbo
+              uses: actions/cache@v3
+              with:
+                  path: .turbo
+                  key: ${{ runner.os }}-turbo-${{ hashFiles('**/*.ts') }}
+                  restore-keys: |
+                      ${{ runner.os }}-turbo-
 
-            - name: Test
-              run: yarn test
+            - name: Run coverage
+              run: turbo run coverage --cache-dir=".turbo"
 
-            - run: npm install -g npm@latest
-
-            - name: Publish @jobindex/pdf-viewer
-              working-directory: packages/pdf-viewer
-              run: npm publish --access public
+            - name: Upload coverage report
+              uses: actions/upload-artifact@v3
+              with:
+                  name: coverage-report
+                  path: coverage/
