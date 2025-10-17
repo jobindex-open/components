@@ -1,6 +1,11 @@
 {
     "name": "@jobindex/config-ts",
     "private": true,
+    "version": "1.0.0",
+    "license": "MIT",
+    "publishConfig": {
+        "access": "public"
+    },
     "devDependencies": {
         "@vue/tsconfig": "^0.8.1",
         "vitest": "^3.2.4"
