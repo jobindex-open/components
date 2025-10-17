@@ -1,0 +1,34 @@
+{
+    "name": "@jobindex/lib",
+    "type": "module",
+    "version": "0.1.0",
+    "private": true,
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/types/index.d.ts",
+            "import": "./dist/index.js"
+        },
+        "./package.json": "./package.json"
+    },
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "tsdown",
+        "lint": "eslint 'src/**/*.ts'",
+        "test:watch": "vitest",
+        "test": "vitest run",
+        "coverage": "vitest run --coverage",
+        "clean": "rimraf ./dist ./coverage"
+    },
+    "devDependencies": {
+        "@jobindex/config-ts": "*",
+        "@types/node": "^24.3.1",
+        "tsdown": "^0.15.7",
+        "typescript": "^5.9.2",
+        "vite": "^7.1.5",
+        "vitest": "^3.2.4"
+    }
+}
