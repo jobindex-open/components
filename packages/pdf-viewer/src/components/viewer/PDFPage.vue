@@ -2,11 +2,10 @@
 /// <reference types="../../../../../node_modules/.vue-global-types/vue_3.5_0.d.ts" />
 import type { PDFDocumentProxy, PDFPageProxy, RenderTask } from 'pdfjs-dist';
 import { computed, onMounted, onUnmounted, ref, shallowRef, watch } from 'vue';
-import { debounce } from '../../lib/util';
 import { useIntersectionObserver } from '../../composables/use-intersectionobserver';
 import TextLayer from '../layers/TextLayer.vue';
 import type { ViewController } from '../../composables/use-view-controller';
-import { createLogger } from '../../lib/logger';
+import { createLogger, debounce } from '@jobindex/lib';
 
 const { controller, idx, pdf } = defineProps<{
     controller: ViewController;

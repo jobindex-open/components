@@ -1,6 +1,6 @@
+import { createLogger } from '@jobindex/lib';
 import * as pdfjs from 'pdfjs-dist';
 import pdfjsWorker from 'pdfjs-dist/build/pdf.worker.min?url';
-import { createLogger } from './logger';
 
 const logger = createLogger({ name: 'pdfjs' });
 
