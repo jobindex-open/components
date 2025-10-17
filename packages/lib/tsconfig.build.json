@@ -1,0 +1,18 @@
+{
+    "extends": "@jobindex/config-ts/tsconfig.vue.json",
+    "exclude": ["node_modules", "dist", "build"],
+    "compilerOptions": {
+        "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+        "noEmit": false,
+        "declaration": true,
+        "declarationDir": "./dist/types",
+        "outDir": "./dist",
+        "types": ["vite/client"],
+        "strict": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noFallthroughCasesInSwitch": true,
+        "noUncheckedSideEffectImports": true
+    },
+    "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"]
+}

@@ -5,7 +5,7 @@ import {
     type OnProgressParameters,
     type PDFDocumentLoadingTask,
 } from 'pdfjs-dist';
-import { createLogger } from '../lib/logger';
+import { createLogger } from '@jobindex/lib';
 
 export const usePDF = (path: string) => {
     const logger = createLogger({ name: 'usePDF' });

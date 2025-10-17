@@ -1,14 +1,13 @@
 import type { TimerHandle } from '../types';
 
-export const clamp = (value: number, min: number, max: number) => {
-    return Math.min(Math.max(value, min), max);
-};
-
-export const round = (value: number, precision: number = 0) => {
-    const multiplier = Math.pow(10, precision);
-    return Math.round(value * multiplier) / multiplier;
-};
-
+/**
+ * Debounce a function
+ *
+ * @param fn - The function to debounce
+ * @param delay - The amount of delay before the function is invoked
+ * @param maxWait - The max amount of time to wait before the function should be invoked, even if new calls are being made
+ * @returns An object containing the invoking function: `debounced()`, and a function to cancel ongoing timers: `cancel()`
+ */
 export const debounce = (
     fn: () => void,
     delay: number = 500,

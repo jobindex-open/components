@@ -1,10 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-
-// TODO(dakg): break this into its own lib, and rewrite.
-// Consider using an external library
-
-enum LogLevel {
+export enum LogLevel {
     Trace,
     Debug,
     Info,
@@ -55,14 +49,14 @@ export const createLogger = (config: Partial<LoggerConfig>) => {
         }
     };
 
-    const formatMessage = (level: LogLevel, message: any) => {
-        return `[${logLevelName(level)}] ${name}: ${message}`;
+    const formatMessage = (level: LogLevel, message: unknown) => {
+        return `[${logLevelName(level)}] ${name}: ${String(message)}`;
     };
 
     const log = (
         level: LogLevel,
-        message?: any,
-        ...optionalParameters: any[]
+        message?: unknown,
+        ...optionalParameters: unknown[]
     ) => {
         if (level < minLevel) return;
 
@@ -72,23 +66,23 @@ export const createLogger = (config: Partial<LoggerConfig>) => {
         fn(formattedMessage, ...optionalParameters);
     };
 
-    const trace = (message?: any, ...optionalParameters: any[]) => {
+    const trace = (message?: unknown, ...optionalParameters: unknown[]) => {
         log(LogLevel.Trace, message, ...optionalParameters);
     };
 
-    const debug = (message?: any, ...optionalParameters: any[]) => {
+    const debug = (message?: unknown, ...optionalParameters: unknown[]) => {
         log(LogLevel.Debug, message, ...optionalParameters);
     };
 
-    const info = (message?: any, ...optionalParameters: any[]) => {
+    const info = (message?: unknown, ...optionalParameters: unknown[]) => {
         log(LogLevel.Info, message, ...optionalParameters);
     };
 
-    const warn = (message?: any, ...optionalParameters: any[]) => {
+    const warn = (message?: unknown, ...optionalParameters: unknown[]) => {
         log(LogLevel.Warn, message, ...optionalParameters);
     };
 
-    const error = (message?: any, ...optionalParameters: any[]) => {
+    const error = (message?: unknown, ...optionalParameters: unknown[]) => {
         log(LogLevel.Error, message, ...optionalParameters);
     };
 
