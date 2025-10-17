@@ -43,11 +43,12 @@
                   nodePackages.prettier
                   turbo
                   act
+                  npm-check
                 ];
 
                 languages.javascript = {
                   enable = true;
-                  pnpm.enable = true;
+                  npm.enable = true;
                   yarn.enable = true;
                 };
 
