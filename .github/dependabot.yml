@@ -3,7 +3,7 @@ updates:
     - package-ecosystem: 'github-actions'
       directory: '/'
       schedule:
-          interval: 'daily'
+          interval: 'weekly'
       groups:
           actions-deps:
               patterns:
@@ -22,7 +22,7 @@ updates:
     - package-ecosystem: 'npm'
       directory: '/packages/pdf-viewer'
       schedule:
-          interval: 'weekly'
+          interval: 'daily'
       groups:
           pdf-viewer-dev:
               dependency-type: 'development'
