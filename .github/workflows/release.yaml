@@ -13,8 +13,9 @@ jobs:
         timeout-minutes: 15
         runs-on: ubuntu-latest
         permissions:
-            contents: read
-            id-token: write
+            contents: write # To create releases
+            id-token: write # For trusted publishing
+            pull-requests: write # To create pull requests
         steps:
             - name: Checkout source
               uses: actions/checkout@v5
