@@ -32,7 +32,7 @@ export const createLogger = (config: Partial<LoggerConfig>) => {
         [LogLevel.Error]: 'ERROR',
     };
 
-    const logFunctions: Record<LogLevel, (...args: any[]) => void> = {
+    const logFunctions: Record<LogLevel, (...args: unknown[]) => void> = {
         [LogLevel.Trace]: console.trace,
         [LogLevel.Debug]: console.debug,
         [LogLevel.Info]: console.info,
