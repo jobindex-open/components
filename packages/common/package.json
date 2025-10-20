@@ -1,0 +1,27 @@
+{
+    "name": "@jobindex/common",
+    "type": "module",
+    "version": "0.1.0",
+    "private": true,
+    "publishConfig": {
+        "access": "public"
+    },
+    "exports": {
+        "./*": "./src/*",
+        "./package.json": "./package.json"
+    },
+    "scripts": {
+        "lint": "eslint 'src/**/*.ts'",
+        "test:watch": "vitest",
+        "test": "vitest run",
+        "coverage": "vitest run --coverage",
+        "clean": "rimraf ./dist ./coverage"
+    },
+    "devDependencies": {
+        "@jobindex/config-ts": "*",
+        "@types/node": "^24.3.1",
+        "typescript": "^5.9.2",
+        "vite": "^7.1.5",
+        "vitest": "^3.2.4"
+    }
+}

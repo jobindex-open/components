@@ -5,10 +5,10 @@ import {
     type OnProgressParameters,
     type PDFDocumentLoadingTask,
 } from 'pdfjs-dist';
-import { createLogger } from '../lib/logger';
+import { createLogger } from '@jobindex/common/lib/logger.ts';
 
 export const usePDF = (path: string) => {
-    const logger = createLogger({ name: 'usePDF' });
+    const logger = createLogger({ name: 'pdf-viewer::usePDF' });
 
     const loading = ref(false);
     const progress = ref(0.0);

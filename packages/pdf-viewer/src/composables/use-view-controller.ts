@@ -7,11 +7,12 @@ import {
     SCALE_OPTIONS,
     SCALE_STEP,
 } from '../lib/constants';
-import { clamp, round } from '../lib/util';
-import type { DeepPartial, ScaleOption } from '../types';
+import { clamp, round } from '@jobindex/common/lib/math.ts';
+import { createLogger } from '@jobindex/common/lib/logger.ts';
+import type { ScaleOption } from '../types';
+import type { DeepPartial } from '@jobindex/common/types.ts';
 import type { PDFDocumentProxy, PDFPageProxy } from 'pdfjs-dist';
 import { scaleOptionToAbsolute, sortScaleOptions } from '../lib/scale-util';
-import { createLogger } from '../lib/logger';
 
 interface ViewOptions {
     scale: {
@@ -32,7 +33,7 @@ interface ViewOptions {
 export type ViewController = ReturnType<typeof viewController>;
 
 const viewController = (config?: DeepPartial<ViewOptions>) => {
-    const logger = createLogger({ name: 'ViewController' });
+    const logger = createLogger({ name: 'pdf-viewer::ViewController' });
 
     const appContainer = ref<HTMLDivElement | undefined>();
     const viewportElement = ref<HTMLDivElement | undefined>();

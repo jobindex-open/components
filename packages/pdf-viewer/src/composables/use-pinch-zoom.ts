@@ -1,14 +1,15 @@
-import type { TimerHandle, Vector2D } from '../types';
-import { createLogger } from '../lib/logger';
 import { computed, ref, watch, type Ref } from 'vue';
-import { distance, midPoint } from '../lib/vector-util';
 import type { ViewController } from './use-view-controller';
+import { type TimerHandle } from '@jobindex/common/types.ts';
+import * as Vector from '@jobindex/common/lib/vector.ts';
+import { type Vector2D } from '@jobindex/common/lib/vector.ts';
+import { createLogger } from '@jobindex/common/lib/logger.ts';
 
 export const usePinchZoom = (
     container: Ref<HTMLElement | undefined>,
     controller: ViewController
 ) => {
-    const logger = createLogger({ name: 'usePinchZoom' });
+    const logger = createLogger({ name: 'pdf-viewer::usePinchZoom' });
 
     const scaleDiff = ref<number>(0);
 
@@ -39,7 +40,7 @@ export const usePinchZoom = (
     };
 
     const _getTouchDistance = (touchA: Touch, touchB: Touch) => {
-        return distance(
+        return Vector.distance(
             { x: touchA.clientX, y: touchA.clientY },
             { x: touchB.clientX, y: touchB.clientY }
         );
@@ -118,9 +119,9 @@ export const usePinchZoom = (
         const currentVec1 = _touchToVector2D(currentPoint1);
         const currentVec2 = _touchToVector2D(currentPoint2);
 
-        const newDistance = distance(currentVec1, currentVec2);
+        const newDistance = Vector.distance(currentVec1, currentVec2);
 
-        origin.value = midPoint(currentVec1, currentVec2);
+        origin.value = Vector.midPoint(currentVec1, currentVec2);
 
         controller.setScale({
             mode: 'absolute',

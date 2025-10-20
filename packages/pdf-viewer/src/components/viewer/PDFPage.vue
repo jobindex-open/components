@@ -2,11 +2,11 @@
 /// <reference types="../../../../../node_modules/.vue-global-types/vue_3.5_0.d.ts" />
 import type { PDFDocumentProxy, PDFPageProxy, RenderTask } from 'pdfjs-dist';
 import { computed, onMounted, onUnmounted, ref, shallowRef, watch } from 'vue';
-import { debounce } from '../../lib/util';
 import { useIntersectionObserver } from '../../composables/use-intersectionobserver';
 import TextLayer from '../layers/TextLayer.vue';
 import type { ViewController } from '../../composables/use-view-controller';
-import { createLogger } from '../../lib/logger';
+import { createLogger } from '@jobindex/common/lib/logger.ts';
+import { debounce } from '@jobindex/common/lib/util.ts';
 
 const { controller, idx, pdf } = defineProps<{
     controller: ViewController;
@@ -14,7 +14,7 @@ const { controller, idx, pdf } = defineProps<{
     pdf: PDFDocumentProxy;
 }>();
 
-const logger = createLogger({ name: `PDFPage (idx: ${idx})` });
+const logger = createLogger({ name: `pdf-viewer::PDFPage (idx: ${idx})` });
 
 const container = ref<HTMLDivElement | undefined>();
 const canvas = ref<HTMLCanvasElement | undefined>();

@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import { createLogger } from '@jobindex/common/lib/logger.ts';
+import { debounce } from '@jobindex/common/lib/util.ts';
 import { type PageViewport, type PDFPageProxy, TextLayer } from 'pdfjs-dist';
 import { onUnmounted, useTemplateRef, watch } from 'vue';
-import { debounce } from '../../lib/util';
-import { createLogger } from '../../lib/logger';
 
 const props = defineProps<{
     page?: PDFPageProxy;
@@ -10,7 +10,7 @@ const props = defineProps<{
 }>();
 
 const logger = createLogger({
-    name: `TextLayer`,
+    name: `pdf-viewer::TextLayer`,
 });
 
 const layerContainer = useTemplateRef('layerContainer');

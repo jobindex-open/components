@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { watch } from 'vue';
 import { type ViewController } from '../../composables/use-view-controller';
-import { debounce } from '../../lib/util';
 import { usePinchZoom } from '../../composables/use-pinch-zoom';
+import { debounce } from '@jobindex/common/lib/util.ts';
 
 const { controller } = defineProps<{ controller: ViewController }>();
 
