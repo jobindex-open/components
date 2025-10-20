@@ -1,21 +1,50 @@
 version: 2
 updates:
+    - package-ecosystem: 'github-actions'
+      directory: '/'
+      schedule:
+          interval: 'daily'
+      groups:
+          actions-deps:
+              patterns:
+                  - '*'
+
     - package-ecosystem: 'npm'
       directory: '/'
       schedule:
           interval: 'weekly'
+      groups:
+          workspace-dev:
+              dependency-type: 'development'
+          workspace-prod:
+              dependency-type: 'production'
 
     - package-ecosystem: 'npm'
       directory: '/packages/pdf-viewer'
       schedule:
           interval: 'weekly'
+      groups:
+          pdf-viewer-dev:
+              dependency-type: 'development'
+          pdf-viewer-prod:
+              dependency-type: 'production'
 
     - package-ecosystem: 'npm'
       directory: '/packages/config-ts'
       schedule:
           interval: 'weekly'
+      groups:
+          config-ts-dev:
+              dependency-type: 'development'
+          config-ts-prod:
+              dependency-type: 'production'
 
     - package-ecosystem: 'npm'
       directory: '/apps/playground'
       schedule:
           interval: 'weekly'
+      groups:
+          playground-dev:
+              dependency-type: 'development'
+          playground-prod:
+              dependency-type: 'production'
