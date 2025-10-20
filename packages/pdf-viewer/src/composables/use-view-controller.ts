@@ -7,9 +7,10 @@ import {
     SCALE_OPTIONS,
     SCALE_STEP,
 } from '../lib/constants';
-import { clamp, createLogger, round } from '@jobindex/lib';
+import { clamp, round } from '@jobindex/common/lib/math.ts';
+import { createLogger } from '@jobindex/common/lib/logger.ts';
 import type { ScaleOption } from '../types';
-import type { DeepPartial } from '@jobindex/lib';
+import type { DeepPartial } from '@jobindex/common/types.ts';
 import type { PDFDocumentProxy, PDFPageProxy } from 'pdfjs-dist';
 import { scaleOptionToAbsolute, sortScaleOptions } from '../lib/scale-util';
 

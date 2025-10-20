@@ -1,4 +1,4 @@
-import type { Size } from '@jobindex/lib';
+import type { Size } from '@jobindex/common/types.ts';
 import type { ScaleOption } from '../types';
 import {
     HORIZONTAL_PADDING,

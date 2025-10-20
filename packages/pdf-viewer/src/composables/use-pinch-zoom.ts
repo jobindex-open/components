@@ -1,11 +1,8 @@
 import { computed, ref, watch, type Ref } from 'vue';
 import type { ViewController } from './use-view-controller';
-import {
-    createLogger,
-    Vector,
-    type TimerHandle,
-    type Vector2D,
-} from '@jobindex/lib';
+import { type TimerHandle, type Vector2D } from '@jobindex/common/types.ts';
+import * as Vector from '@jobindex/common/lib/vector.ts';
+import { createLogger } from '@jobindex/common/lib/logger.ts';
 
 export const usePinchZoom = (
     container: Ref<HTMLElement | undefined>,

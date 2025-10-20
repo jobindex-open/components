@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { createLogger, debounce } from '@jobindex/lib';
+import { createLogger } from '@jobindex/common/lib/logger.ts';
+import { debounce } from '@jobindex/common/lib/util.ts';
 import { type PageViewport, type PDFPageProxy, TextLayer } from 'pdfjs-dist';
 import { onUnmounted, useTemplateRef, watch } from 'vue';
 

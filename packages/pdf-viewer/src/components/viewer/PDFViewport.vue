@@ -2,7 +2,7 @@
 import { watch } from 'vue';
 import { type ViewController } from '../../composables/use-view-controller';
 import { usePinchZoom } from '../../composables/use-pinch-zoom';
-import { debounce } from '@jobindex/lib';
+import { debounce } from '@jobindex/common/lib/util.ts';
 
 const { controller } = defineProps<{ controller: ViewController }>();
 

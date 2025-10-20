@@ -1,4 +1,4 @@
-import { createLogger } from '@jobindex/lib';
+import { createLogger } from '@jobindex/common/lib/logger.ts';
 import * as pdfjs from 'pdfjs-dist';
 import pdfjsWorker from 'pdfjs-dist/build/pdf.worker.min?url';
 

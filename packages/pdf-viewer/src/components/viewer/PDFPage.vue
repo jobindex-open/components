@@ -5,7 +5,8 @@ import { computed, onMounted, onUnmounted, ref, shallowRef, watch } from 'vue';
 import { useIntersectionObserver } from '../../composables/use-intersectionobserver';
 import TextLayer from '../layers/TextLayer.vue';
 import type { ViewController } from '../../composables/use-view-controller';
-import { createLogger, debounce } from '@jobindex/lib';
+import { createLogger } from '@jobindex/common/lib/logger.ts';
+import { debounce } from '@jobindex/common/lib/util.ts';
 
 const { controller, idx, pdf } = defineProps<{
     controller: ViewController;

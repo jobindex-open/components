@@ -1,5 +1,5 @@
 {
-    "name": "@jobindex/lib",
+    "name": "@jobindex/common",
     "type": "module",
     "version": "0.1.0",
     "private": true,
@@ -7,7 +7,7 @@
         "access": "public"
     },
     "exports": {
-        ".": "./src/index.ts",
+        "./*": "./src/*",
         "./package.json": "./package.json"
     },
     "scripts": {
