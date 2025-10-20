@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import { clamp, round } from '../../src';
+import { clamp, round } from '../../src/lib/math';
 
 test.each([
     [5, 1, 10, 5],

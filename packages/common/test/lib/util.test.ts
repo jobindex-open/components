@@ -1,4 +1,4 @@
-import { debounce } from '../../src';
+import { debounce } from '../../src/lib/util';
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 
 describe('debounce', () => {

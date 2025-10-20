@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import { Vector } from '../../src';
+import * as Vector from '../../src/lib/vector';
 
 test.each([
     [

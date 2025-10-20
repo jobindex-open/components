@@ -1,5 +1,5 @@
 import { describe, expect, vi, beforeEach, test } from 'vitest';
-import { createLogger, LogLevel } from '../../src';
+import { createLogger, LogLevel } from '../../src/lib/logger';
 
 describe('Logger', () => {
     const consoleMethods = {
