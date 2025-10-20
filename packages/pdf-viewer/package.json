@@ -47,6 +47,8 @@
         "build:types": "vue-tsc --declaration --emitDeclarationOnly -p tsconfig.build.json",
         "lint": "eslint 'src/**/*.{ts,vue}'",
         "coverage": "vitest run --coverage",
+        "test": "vitest run",
+        "test:watch": "vitest",
         "clean": "rimraf ./dist ./coverage"
     },
     "peerDependencies": {
