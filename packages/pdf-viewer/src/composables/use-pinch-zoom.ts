@@ -11,7 +11,7 @@ export const usePinchZoom = (
     container: Ref<HTMLElement | undefined>,
     controller: ViewController
 ) => {
-    const logger = createLogger({ name: 'usePinchZoom' });
+    const logger = createLogger({ name: 'pdf-viewer::usePinchZoom' });
 
     const scaleDiff = ref<number>(0);
 

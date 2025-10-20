@@ -2,7 +2,7 @@ import { createLogger } from '@jobindex/lib';
 import * as pdfjs from 'pdfjs-dist';
 import pdfjsWorker from 'pdfjs-dist/build/pdf.worker.min?url';
 
-const logger = createLogger({ name: 'pdfjs' });
+const logger = createLogger({ name: 'pdf-viewer::pdfjs' });
 
 export const configureWorker = (worker: string) => {
     pdfjs.GlobalWorkerOptions.workerSrc = worker;

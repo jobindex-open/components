@@ -46,8 +46,6 @@
         "build": "vite build",
         "build:types": "vue-tsc --declaration --emitDeclarationOnly -p tsconfig.build.json",
         "lint": "eslint 'src/**/*.{ts,vue}'",
-        "test:watch": "vitest",
-        "test": "vitest run",
         "coverage": "vitest run --coverage",
         "clean": "rimraf ./dist ./coverage"
     },

@@ -32,7 +32,7 @@ interface ViewOptions {
 export type ViewController = ReturnType<typeof viewController>;
 
 const viewController = (config?: DeepPartial<ViewOptions>) => {
-    const logger = createLogger({ name: 'ViewController' });
+    const logger = createLogger({ name: 'pdf-viewer::ViewController' });
 
     const appContainer = ref<HTMLDivElement | undefined>();
     const viewportElement = ref<HTMLDivElement | undefined>();

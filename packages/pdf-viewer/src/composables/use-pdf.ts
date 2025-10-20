@@ -8,7 +8,7 @@ import {
 import { createLogger } from '@jobindex/lib';
 
 export const usePDF = (path: string) => {
-    const logger = createLogger({ name: 'usePDF' });
+    const logger = createLogger({ name: 'pdf-viewer::usePDF' });
 
     const loading = ref(false);
     const progress = ref(0.0);

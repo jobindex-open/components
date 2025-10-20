@@ -9,7 +9,7 @@ const props = defineProps<{
 }>();
 
 const logger = createLogger({
-    name: `TextLayer`,
+    name: `pdf-viewer::TextLayer`,
 });
 
 const layerContainer = useTemplateRef('layerContainer');

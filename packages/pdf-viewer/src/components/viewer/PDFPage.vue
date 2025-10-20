@@ -13,7 +13,7 @@ const { controller, idx, pdf } = defineProps<{
     pdf: PDFDocumentProxy;
 }>();
 
-const logger = createLogger({ name: `PDFPage (idx: ${idx})` });
+const logger = createLogger({ name: `pdf-viewer::PDFPage (idx: ${idx})` });
 
 const container = ref<HTMLDivElement | undefined>();
 const canvas = ref<HTMLCanvasElement | undefined>();
