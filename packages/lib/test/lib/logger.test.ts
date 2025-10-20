@@ -1,5 +1,5 @@
-import { describe, expect, vi, beforeEach, afterEach, test } from 'vitest';
-import { createLogger, LogLevel } from '../../src'; // adjust path
+import { describe, expect, vi, beforeEach, test } from 'vitest';
+import { createLogger, LogLevel } from '../../src';
 
 describe('Logger', () => {
     const consoleMethods = {
@@ -12,10 +12,6 @@ describe('Logger', () => {
 
     beforeEach(() => {
         vi.clearAllMocks();
-    });
-
-    afterEach(() => {
-        vi.restoreAllMocks();
     });
 
     test('logs info and above by default', () => {
@@ -57,7 +53,7 @@ describe('Logger', () => {
         logger.info('hello');
 
         expect(consoleMethods.info).toHaveBeenCalledWith(
-            '[INFO] PDFjsVue::MyLogger: hello'
+            '[INFO] MyLogger: hello'
         );
     });
 
@@ -65,10 +61,7 @@ describe('Logger', () => {
         const logger = createLogger({});
         logger.warn('warn');
 
-        expect(consoleMethods.warn).toHaveBeenCalledWith(
-            expect.stringContaining('PDFjsVue::DefaultLogger'),
-            'warn'
-        );
+        expect(consoleMethods.warn).toHaveBeenCalledWith('[WARN] warn');
     });
 
     test('handles optional parameters', () => {

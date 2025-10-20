@@ -7,50 +7,46 @@ export enum LogLevel {
 }
 
 export type LoggerConfig = {
-    name: string;
+    name?: string;
     minLevel: LogLevel;
+    silence: boolean;
+};
+
+const defaultLoggerConfig: LoggerConfig = {
+    name: undefined,
+    minLevel: LogLevel.Info,
+    silence: false,
 };
 
 export const createLogger = (config: Partial<LoggerConfig>) => {
-    const name = `PDFjsVue::${config.name ?? 'DefaultLogger'}`;
-    const minLevel = config.minLevel ?? LogLevel.Info;
-
-    const logLevelName = (level: LogLevel) => {
-        switch (level) {
-            case LogLevel.Trace:
-                return 'TRACE';
-            case LogLevel.Debug:
-                return 'DEBUG';
-            case LogLevel.Info:
-                return 'INFO';
-            case LogLevel.Warn:
-                return 'WARN';
-            case LogLevel.Error:
-                return 'ERROR';
-            default:
-                return 'LOG';
-        }
+    const _config = {
+        ...defaultLoggerConfig,
+        ...config,
     };
 
-    const getLogFunction = (level: LogLevel) => {
-        switch (level) {
-            case LogLevel.Trace:
-                return console.trace;
-            case LogLevel.Debug:
-                return console.debug;
-            case LogLevel.Info:
-                return console.info;
-            case LogLevel.Warn:
-                return console.warn;
-            case LogLevel.Error:
-                return console.error;
-            default:
-                return console.log;
-        }
+    const levelNames: Record<LogLevel, string> = {
+        [LogLevel.Trace]: 'TRACE',
+        [LogLevel.Debug]: 'DEBUG',
+        [LogLevel.Info]: 'INFO',
+        [LogLevel.Warn]: 'WARN',
+        [LogLevel.Error]: 'ERROR',
     };
+
+    const logFunctions: Record<LogLevel, (...args: any[]) => void> = {
+        [LogLevel.Trace]: console.trace,
+        [LogLevel.Debug]: console.debug,
+        [LogLevel.Info]: console.info,
+        [LogLevel.Warn]: console.warn,
+        [LogLevel.Error]: console.error,
+    };
+
+    const logLevelName = (level: LogLevel) => levelNames[level] ?? 'LOG';
+    const getLogFunction = (level: LogLevel) =>
+        logFunctions[level] ?? console.log;
 
     const formatMessage = (level: LogLevel, message: unknown) => {
-        return `[${logLevelName(level)}] ${name}: ${String(message)}`;
+        const name = _config.name ? `${_config.name}: ` : '';
+        return `[${logLevelName(level)}] ${name}${String(message)}`;
     };
 
     const log = (
@@ -58,11 +54,11 @@ export const createLogger = (config: Partial<LoggerConfig>) => {
         message?: unknown,
         ...optionalParameters: unknown[]
     ) => {
-        if (level < minLevel) return;
+        if (_config.silence) return;
+        if (level < _config.minLevel) return;
 
-        const fn = getLogFunction(level);
         const formattedMessage = formatMessage(level, message);
-
+        const fn = getLogFunction(level);
         fn(formattedMessage, ...optionalParameters);
     };
 
