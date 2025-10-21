@@ -21,7 +21,7 @@
         "@jobindex/config-ts": "*",
         "@types/node": "^24.3.1",
         "typescript": "^5.9.2",
-        "vite": "^7.1.5",
+        "vite": "^7.1.11",
         "vitest": "^3.2.4"
     }
 }
