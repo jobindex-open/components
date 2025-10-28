@@ -1,6 +1,6 @@
 import { createLogger } from '@jobindex/common/lib/logger.ts';
 import pdfjsWorker from 'pdfjs-dist/build/pdf.worker.min?url';
-import { configureWorker, init } from '../../src/lib/pdfjs';
+import { configureWorker, init } from '../../../src/lib/pdfjs';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
 // Mock the logger

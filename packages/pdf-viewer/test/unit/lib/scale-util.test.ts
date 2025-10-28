@@ -3,14 +3,14 @@ import {
     isPortrait,
     scaleOptionToAbsolute,
     sortScaleOptions,
-} from '../../src/lib/scale-util.ts';
+} from '../../../src/lib/scale-util.ts';
 import type { Size } from '@jobindex/common/types.js';
-import type { ScaleOption } from '../../src/types.ts';
+import type { ScaleOption } from '../../../src/types.ts';
 import {
     HORIZONTAL_PADDING,
     SCALE_MAX_AUTO,
     VERTICAL_PADDING,
-} from '../../src/lib/constants.ts';
+} from '../../../src/lib/constants.ts';
 
 test.each([
     [{ width: 1920, height: 1080 }, false],

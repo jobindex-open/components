@@ -4,3 +4,9 @@ dist/
 pnpm-lock.yaml
 package-lock.json
 *.lock
+
+.turbo/
+
+.devenv/
+.direnv/
+.pre-commit-config.yaml
