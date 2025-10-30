@@ -6,10 +6,21 @@ import {
     VERTICAL_PADDING,
 } from './constants';
 
+/**
+ * Check if a size is in portrait mode
+ */
 export const isPortrait = (size: Size): boolean => {
     return size.width <= size.height;
 };
 
+/**
+ * Get absolute scale from a given scale option
+ *
+ * @param {ScaleOption} opt - The scale option to convert
+ * @param {Size} containerSize - The size of the containing element
+ * @param {Size} pageSize - The size of the page to fit
+ * @param {Size} [padding] - Size of any padding
+ */
 export const scaleOptionToAbsolute = (
     opt: ScaleOption,
     containerSize: Size,
@@ -38,6 +49,9 @@ export const scaleOptionToAbsolute = (
     }
 };
 
+/**
+ * Sorting function to sort two `ScaleOption`s
+ */
 export const sortScaleOptions = (a: ScaleOption, b: ScaleOption) => {
     // Sort numerically if both are absolute
     if (a.mode === 'absolute' && b.mode === 'absolute') {
