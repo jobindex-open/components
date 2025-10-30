@@ -15,7 +15,7 @@ jobs:
         permissions:
             contents: write # To create releases
             id-token: write # For trusted publishing
-            pull_requests: write # To create pull requests
+            pull-requests: write # To create pull requests
         steps:
             - name: Checkout source
               uses: actions/checkout@v5
