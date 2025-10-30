@@ -1,8 +1,7 @@
 {
     "extends": "@jobindex/config-ts/tsconfig.vue.json",
     "include": [
-        "src/**/*.{vue,ts}",
-        "test/**/*.{spec,test}.ts",
+        ".",
         "vite.config.ts",
         "vitest.config.ts",
         "vitest.browser.config.ts"
