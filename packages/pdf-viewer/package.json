@@ -60,7 +60,7 @@
         "@jobindex/common": "*",
         "@types/node": "^24.9.1",
         "@vitejs/plugin-vue": "^6.0.1",
-        "@vitest/coverage-v8": "4.0.1",
+        "@vitest/coverage-v8": "4.0.5",
         "typescript": "^5.9.2",
         "vite": "^7.1.12",
         "vitest": "^4.0.4",
