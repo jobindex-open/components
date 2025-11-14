@@ -4,6 +4,9 @@
         "test": {
             "dependsOn": ["^test"]
         },
+        "test:browser": {
+            "dependsOn": ["^test:browser"]
+        },
         "coverage": {
             "outputs": ["coverage/**"],
             "dependsOn": ["^coverage"]
