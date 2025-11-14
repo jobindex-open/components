@@ -47,10 +47,12 @@
         "build:types": "vue-tsc --declaration --emitDeclarationOnly -p tsconfig.build.json",
         "lint": "eslint 'src/**/*.{ts,vue}'",
         "coverage": "vitest run --coverage",
-        "test": "vitest run",
+        "test": "yarn test:default && yarn test:browser",
+        "test:default": "vitest run",
         "test:watch": "vitest",
         "clean": "rimraf ./dist ./coverage",
-        "test:browser": "vitest --config vitest.browser.config.ts"
+        "test:browser": "vitest run --config vitest.browser.config.ts",
+        "test:browser-watch": "vitest --config vitest.browser.config.ts"
     },
     "peerDependencies": {
         "vue": "^3.5.0"

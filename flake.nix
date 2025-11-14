@@ -42,6 +42,7 @@
           #   (builtins.fromJSON (builtins.readFile "${pkgs.playwright-driver}/browsers.json")).browsers;
           # chromium-rev = (builtins.head (builtins.filter (x: x.name == "chromium") browsers)).revision;
           playwright-version = "1.56.1";
+          playwright-port = "3010";
         in
         {
           default = devenv.lib.mkShell {
@@ -69,7 +70,7 @@
                 # env.PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS = "true";
                 # env.PLAYWRIGHT_NODEJS_PATH = "${pkgs.nodejs}/bin/node";
                 # env.PLAYWRIGHT_LAUNCH_OPTIONS_EXECUTABLE_PATH = "${pkgs.playwright.browsers}/chromium-${chromium-rev}/chrome-linux/chrome";
-                env.PW_TEST_CONNECT_WS_ENDPOINT = "ws://127.0.0.1:3000/";
+                env.PW_TEST_CONNECT_WS_ENDPOINT = "ws://127.0.0.1:${playwright-port}/";
 
                 languages.javascript = {
                   enable = true;
@@ -81,18 +82,21 @@
 
                 git-hooks.hooks = {
                   eslint.enable = true;
-                  prettier.enable = true;
+                  prettier = {
+                    enable = true;
+                    settings.configPath = ".prettierrc";
+                  };
                   nixfmt-rfc-style.enable = true;
                 };
 
                 scripts = {
                   playwright-server.exec = ''
-                    docker run -p 3000:3000 \
+                    docker run -p ${playwright-port}:${playwright-port} \
                      --rm --init -it \
                      --workdir /home/pwuser \
                      mcr.microsoft.com/playwright:v${playwright-version}-noble \
                      /bin/sh -c \
-                     "npx -y playwright@${playwright-version} run-server --port 3000 --host 0.0.0.0"
+                     "npx -y playwright@${playwright-version} run-server --port ${playwright-port} --host 0.0.0.0"
                   '';
                 };
               }
