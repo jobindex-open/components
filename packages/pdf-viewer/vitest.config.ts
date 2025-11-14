@@ -1,5 +1,5 @@
 import { coverageConfigDefaults, defineConfig } from 'vitest/config';
-import { playwright } from '@vitest/browser-playwright';
+// import { playwright } from '@vitest/browser-playwright';
 import vue from '@vitejs/plugin-vue';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
@@ -14,7 +14,7 @@ export default defineConfig({
             'test/**/*.unit.{test,spec}.ts',
         ],
         name: 'unit',
-        environment: 'node',
+        environment: 'jsdom',
         //     },
         // },
         // {
