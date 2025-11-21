@@ -2,6 +2,7 @@ import { describe, test, expect, vi, beforeEach } from 'vitest';
 import { type Ref, ref, defineComponent } from 'vue';
 import { usePinchZoom } from '@src/composables/use-pinch-zoom';
 import { mount } from '@vue/test-utils';
+import type { ViewController } from '@src/composables';
 
 describe('usePinchZoom', () => {
     let container: Ref<HTMLElement>;
@@ -17,13 +18,32 @@ describe('usePinchZoom', () => {
         container = ref(document.createElement('div'));
     });
 
+    const createWrapper = (
+        container: Ref<HTMLElement>,
+        controller: ViewController
+    ) =>
+        mount(
+            defineComponent({
+                setup() {
+                    const { isPinchZooming } = usePinchZoom(
+                        container,
+                        controller
+                    );
+                    return { isPinchZooming };
+                },
+                render() {
+                    return '';
+                },
+            })
+        );
+
     const createTouch = (id: number, x: number, y: number): Touch => {
         return {
             identifier: id,
             clientX: x,
             clientY: y,
-            target: container.value!,
-        } as Touch;
+            target: container.value,
+        } as unknown as Touch;
     };
 
     const createTouchEvent = (
@@ -38,26 +58,16 @@ describe('usePinchZoom', () => {
     };
 
     test('should initialize with default values', () => {
-        const controller = MockViewController();
+        // FIXME: a better way to type controller?
+        const controller = MockViewController() as unknown as ViewController;
         const { isPinchZooming, origin } = usePinchZoom(container, controller);
         expect(isPinchZooming.value).toBe(false);
         expect(origin.value).toEqual({ x: 0, y: 0 });
     });
 
     test('should detect pinch zoom start when two touches are added', () => {
-        const controller = MockViewController();
-
-        const TestComponent = defineComponent({
-            setup() {
-                const { isPinchZooming } = usePinchZoom(container, controller);
-                return { isPinchZooming };
-            },
-            render() {
-                return '';
-            },
-        });
-
-        const wrapper = mount(TestComponent);
+        const controller = MockViewController() as unknown as ViewController;
+        const wrapper = createWrapper(container, controller);
 
         const t1 = createTouch(1, 10, 10);
         const t2 = createTouch(2, 20, 20);
@@ -70,20 +80,10 @@ describe('usePinchZoom', () => {
 
     test('should call controller.setScale on pinch move', () => {
         const controller = MockViewController();
-
-        const TestComponent = defineComponent({
-            setup() {
-                const { isPinchZooming } = usePinchZoom(container, controller);
-                return { isPinchZooming };
-            },
-            render() {
-                return '';
-            },
-        });
-
-        const wrapper = mount(TestComponent);
-
-        // await wrapper.vm.$nextTick();
+        const wrapper = createWrapper(
+            container,
+            controller as unknown as ViewController
+        );
 
         const t1 = createTouch(1, 10, 10);
         const t2 = createTouch(2, 20, 20);
@@ -101,29 +101,18 @@ describe('usePinchZoom', () => {
             createTouchEvent('touchmove', [t1Move, t2Move])
         );
 
-        expect(controller.setScale).toHaveBeenCalledWith({
-            mode: 'absolute',
-            absoluteScale: 3, // FIXME: should probably check if arg is larger than 1 and not exactly 3
-        });
-        // const args = controller.setScale.mock.calls[0][0];
-        // expect(args.mode).toBe('absolute');
-        // expect(args.absoluteScale).toBeGreaterThan(1);
+        expect(controller.setScale).toHaveBeenCalled();
+        const args = controller.setScale.mock.calls[0]![0] as {
+            mode: string;
+            absoluteScale: number;
+        };
+        expect(args.mode).toBe('absolute');
+        expect(args.absoluteScale).toBeGreaterThan(1);
     });
 
     test('should call zoomIn on double tap', () => {
-        const controller = MockViewController();
-
-        const TestComponent = defineComponent({
-            setup() {
-                const { isPinchZooming } = usePinchZoom(container, controller);
-                return { isPinchZooming };
-            },
-            render() {
-                return '';
-            },
-        });
-
-        mount(TestComponent);
+        const controller = MockViewController() as unknown as ViewController;
+        createWrapper(container, controller);
 
         const t1 = createTouch(1, 10, 10);
 
