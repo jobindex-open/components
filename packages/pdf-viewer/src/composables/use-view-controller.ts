@@ -14,7 +14,7 @@ import type { DeepPartial } from '@jobindex/common/types.ts';
 import type { PDFDocumentProxy, PDFPageProxy } from 'pdfjs-dist';
 import { scaleOptionToAbsolute, sortScaleOptions } from '../lib/scale-util';
 
-interface ViewOptions {
+export interface ViewOptions {
     scale: {
         default: number;
         factor: number;
@@ -74,9 +74,6 @@ const viewController = (config?: DeepPartial<ViewOptions>) => {
      */
     const baseScale = computed(() => {
         if (!viewportElement.value || !firstPage.value) {
-            // logger.warn(
-            //     'Could not calculate scaling, pdf or viewport might be undefined'
-            // );
             return state.scale.mode === 'absolute'
                 ? state.scale.absoluteScale
                 : options.scale.default;

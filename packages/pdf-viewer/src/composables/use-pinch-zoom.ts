@@ -11,8 +11,6 @@ export const usePinchZoom = (
 ) => {
     const logger = createLogger({ name: 'pdf-viewer::usePinchZoom' });
 
-    const scaleDiff = ref<number>(0);
-
     const touchCache = ref<Touch[]>([]);
     const isPinchZooming = computed(() => touchCache.value.length == 2);
 
@@ -129,18 +127,31 @@ export const usePinchZoom = (
         });
     };
 
-    watch(container, (el, _old, onCleanup) => {
-        if (!el) return;
+    const _setupEventListeners = (el: HTMLElement) => {
         el.addEventListener('touchstart', startHandler);
         el.addEventListener('touchend', endHandler);
         el.addEventListener('touchmove', moveHandler);
+    };
+
+    const _cleanupEventListeners = (el: HTMLElement) => {
+        el.removeEventListener('touchstart', startHandler);
+        el.removeEventListener('touchend', endHandler);
+        el.removeEventListener('touchmove', moveHandler);
+    };
+
+    // Initial setup
+    if (container.value) {
+        _setupEventListeners(container.value);
+    }
+
+    watch(container, (el, _old, onCleanup) => {
+        if (!el) return;
+        _setupEventListeners(el);
 
         onCleanup(() => {
-            el.removeEventListener('touchstart', startHandler);
-            el.removeEventListener('touchend', endHandler);
-            el.removeEventListener('touchmove', moveHandler);
+            _cleanupEventListeners(el);
         });
     });
 
-    return { scaleDiff, isPinchZooming, origin };
+    return { isPinchZooming, origin };
 };
