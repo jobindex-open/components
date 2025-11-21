@@ -1,0 +1,15 @@
+import { test, expect, describe } from 'vitest';
+import Component from '@src/Component.vue';
+import { render } from 'vitest-browser-vue';
+
+describe('Component', () => {
+    test('Test description', async () => {
+        const screen = render(Component, {
+            props: {},
+        });
+
+        await expect
+            .element(screen.getByText('Hello, World!'))
+            .toBeInTheDocument();
+    });
+});

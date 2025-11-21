@@ -1,0 +1,14 @@
+import { test, expect, describe } from 'vitest';
+import Component from '@src/Component.vue';
+import { mount } from '@vue/test-utils';
+
+describe('Component', () => {
+    test('Test description', () => {
+        const wrapper = mount(Component, {
+            props: {},
+        });
+
+        const label = wrapper.get('p');
+        expect(label.text()).toBe('Hello, World!');
+    });
+});
