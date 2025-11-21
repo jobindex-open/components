@@ -4,8 +4,6 @@
     systems.url = "github:nix-systems/default";
     devenv.url = "github:cachix/devenv";
     devenv.inputs.nixpkgs.follows = "nixpkgs";
-
-    # nixpkgs-playwright.url = "github:NixOS/nixpkgs/979daf34c8cacebcd917d540070b52a3c2b9b16e";
   };
 
   nixConfig = {
@@ -24,23 +22,10 @@
       forEachSystem = nixpkgs.lib.genAttrs (import systems);
     in
     {
-      # packages = forEachSystem (
-      #   system:
-      #   let
-      #     pkgs = nixpkgs.legacyPackages.${system};
-      #   in
-      #   {
-      #   }
-      # );
-
       devShells = forEachSystem (
         system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
-          # pkgs-playwright = import inputs.nixpkgs-playwright { system = pkgs.stdenv.system; };
-          # browsers =
-          #   (builtins.fromJSON (builtins.readFile "${pkgs.playwright-driver}/browsers.json")).browsers;
-          # chromium-rev = (builtins.head (builtins.filter (x: x.name == "chromium") browsers)).revision;
           playwright-version = "1.56.1";
           playwright-port = "3010";
         in
@@ -57,20 +42,10 @@
 
                   # Tools
                   gh
-                  # nodePackages.prettier
                   turbo
                   act
                   npm-check
-
-                  # Required for browser testing
-                  # playwright-driver.browsers
                 ];
-
-                # env.PLAYWRIGHT_BROWSERS_PATH = "${pkgs.playwright-driver.browsers}";
-                # env.PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS = "true";
-                # env.PLAYWRIGHT_NODEJS_PATH = "${pkgs.nodejs}/bin/node";
-                # env.PLAYWRIGHT_LAUNCH_OPTIONS_EXECUTABLE_PATH = "${pkgs.playwright.browsers}/chromium-${chromium-rev}/chrome-linux/chrome";
-                env.PW_TEST_CONNECT_WS_ENDPOINT = "ws://127.0.0.1:${playwright-port}/";
 
                 languages.javascript = {
                   enable = true;
@@ -89,7 +64,10 @@
                   nixfmt-rfc-style.enable = true;
                 };
 
+                env.PW_TEST_CONNECT_WS_ENDPOINT = "ws://127.0.0.1:${playwright-port}/";
+
                 scripts = {
+                  # Run playwright browsers in a docker container
                   playwright-server.exec = ''
                     docker run -p ${playwright-port}:${playwright-port} \
                      --rm --init -it \
