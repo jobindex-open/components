@@ -1,7 +1,6 @@
-import { createLogger } from '@jobindex/common/lib/logger.ts';
 import pdfjsWorker from 'pdfjs-dist/build/pdf.worker.min?url';
 import { configureWorker, init } from '../../../src/lib/pdfjs';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, test, expect, vi, beforeEach } from 'vitest';
 
 // Mock the logger
 vi.mock('@jobindex/common/lib/logger.ts', () => ({
@@ -36,17 +35,17 @@ describe('pdfjs.ts', () => {
         vi.clearAllMocks();
     });
 
-    it('configureWorker sets pdfjs workerSrc', () => {
+    test('configureWorker sets pdfjs workerSrc', () => {
         configureWorker('custom-worker.js');
         expect(mockSetWorkerSrc).toHaveBeenCalledWith('custom-worker.js');
     });
 
-    it('init logs and sets workerSrc', () => {
+    test('init logs and sets workerSrc', () => {
         init();
         expect(mockSetWorkerSrc).toHaveBeenCalledWith('mock-worker-url');
     });
 
-    it('pdfjsWorker is exported correctly', () => {
+    test('pdfjsWorker is exported correctly', () => {
         expect(pdfjsWorker).toBe('mock-worker-url');
     });
 });
