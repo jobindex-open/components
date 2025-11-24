@@ -15,7 +15,7 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - uses: actions/checkout@v5
+            - uses: actions/checkout@v6
 
             - name: Pre-install yarn
               run: npm install -g yarn
@@ -48,7 +48,7 @@ jobs:
     #     runs-on: ubuntu-latest
 
     #     steps:
-    #         - uses: actions/checkout@v5
+    #         - uses: actions/checkout@v6
 
     #         - name: Pre-install yarn
     #           run: npm install -g yarn
@@ -86,7 +86,7 @@ jobs:
                 node-version: [20.x, 22.x, 24.x]
 
         steps:
-            - uses: actions/checkout@v5
+            - uses: actions/checkout@v6
 
             - name: Pre-install yarn
               run: npm install -g yarn
@@ -120,7 +120,7 @@ jobs:
     #     needs: build
 
     #     steps:
-    #         - uses: actions/checkout@v5
+    #         - uses: actions/checkout@v6
 
     #         - name: Pre-install yarn
     #           run: npm install -g yarn
