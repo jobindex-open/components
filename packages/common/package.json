@@ -19,9 +19,9 @@
     },
     "devDependencies": {
         "@jobindex/config-ts": "*",
-        "@types/node": "^24.10.0",
+        "@types/node": "^24.10.1",
         "typescript": "^5.9.2",
-        "vite": "^7.2.2",
-        "vitest": "^4.0.8"
+        "vite": "^7.2.4",
+        "vitest": "^4.0.13"
     }
 }
