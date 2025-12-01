@@ -8,6 +8,6 @@
     },
     "devDependencies": {
         "@vue/tsconfig": "^0.8.1",
-        "vitest": "^4.0.13"
+        "vitest": "^4.0.14"
     }
 }
