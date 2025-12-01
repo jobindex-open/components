@@ -53,7 +53,7 @@
         "vue": "^3.5.0"
     },
     "dependencies": {
-        "pdfjs-dist": "^5.4.394"
+        "pdfjs-dist": "^5.4.449"
     },
     "devDependencies": {
         "@jobindex/config-ts": "*",
