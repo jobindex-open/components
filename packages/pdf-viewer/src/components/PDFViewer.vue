@@ -38,7 +38,6 @@ const { pdf, loading, progress } =
     typeof props.pdf === 'string' ? usePDF(props.pdf) : props.pdf;
 
 const controller = props.controller ?? useViewController();
-const appContainer = controller.appContainer;
 
 watch(pdf, () => {
     if (!pdf.value) return;
@@ -71,7 +70,6 @@ onUnmounted(() => {
 <template>
     <div class="pdf-viewer">
         <div
-            ref="appContainer"
             :class="{
                 'pdf-viewer-container': true,
                 fullscreen: controller.state.isFullscreen,

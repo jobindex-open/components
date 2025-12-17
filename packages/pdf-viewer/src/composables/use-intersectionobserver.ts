@@ -10,6 +10,7 @@ export const useIntersectionObserver = (
         container,
         () => {
             _cleanup();
+            if (!container.value) return;
 
             const observer = new IntersectionObserver(callback, {
                 root: container.value,

@@ -186,7 +186,7 @@ onUnmounted(() => {
             <canvas ref="canvas" />
         </div>
         <TextLayer
-            v-if="controller.options.showTextLayer"
+            v-if="controller.options.showTextLayer && documentPage && viewport"
             :page="documentPage"
             :viewport="viewport"
         />

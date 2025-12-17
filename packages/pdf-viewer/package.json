@@ -39,8 +39,29 @@
         "access": "public"
     },
     "files": [
-        "dist",
-        "README.md"
+        "package.json",
+        "README.md",
+        "LICENSE",
+        "src/**/*.ts",
+        "dist/**/*.js",
+        "dist/**/*.js.map",
+        "dist/**/*.cjs",
+        "dist/**/*.cjs.map",
+        "dist/**/*.d.ts",
+        "dist/**/*.d.ts.map",
+        "dist/**/*.css",
+        "!src/test/",
+        "!src/**/*.test.ts",
+        "!src/**/*.spec.ts",
+        "!dist/test/",
+        "!dist/**/*.test.js",
+        "!dist/**/*.spec.js",
+        "!dist/**/*.test.js.map",
+        "!dist/**/*.spec.js.map",
+        "!dist/**/*.test.d.ts",
+        "!dist/**/*.spec.d.ts",
+        "!dist/**/*.test.d.ts.map",
+        "!dist/**/*.spec.d.ts.map"
     ],
     "scripts": {
         "build": "vite build",
@@ -56,8 +77,8 @@
         "pdfjs-dist": "^5.4.449"
     },
     "devDependencies": {
-        "@jobindex/config-ts": "*",
         "@jobindex/common": "*",
+        "@jobindex/config-ts": "*",
         "@types/node": "^25.0.2",
         "@vitejs/plugin-vue": "^6.0.3",
         "@vitest/coverage-v8": "4.0.16",
