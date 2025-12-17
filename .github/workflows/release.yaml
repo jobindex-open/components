@@ -33,20 +33,13 @@ jobs:
               with:
                   node-version: 22.x
                   cache: 'yarn'
+                  registry-url: https://registry.npmjs.org
 
             - name: Install
               run: yarn install --frozen-lockfile
 
-            # - name: Cache Turbo
-            #   uses: actions/cache@v5
-            #   with:
-            #       path: .turbo
-            #       key: ${{ runner.os }}-turbo-${{ hashFiles('**/*.ts') }}
-            #       restore-keys: |
-            #           ${{ runner.os }}-turbo-
             - name: Build production bundle
               run: yarn build
-              # run: turbo run build build:types --cache-dir=".turbo"
 
             - name: Install latest version of npm
               run: npm install -g npm@latest
@@ -59,4 +52,4 @@ jobs:
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   NPM_TOKEN: '' # https://github.com/changesets/changesets/issues/1152#issuecomment-3190884868
-                  # NODE_AUTH_TOKEN: ''
+                  NODE_AUTH_TOKEN: ''
