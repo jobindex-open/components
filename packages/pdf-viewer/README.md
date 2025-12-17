@@ -45,9 +45,9 @@ import '@jobindex/pdf-viewer/style.css';
 
 ## Credits:
 
-- PDF engine: [pdf.js](https://github.com/mozilla/pdf.js)
-- Icons used: [Iconoir](https://iconoir.com/)
+-   PDF engine: [pdf.js](https://github.com/mozilla/pdf.js)
+-   Icons used: [Iconoir](https://iconoir.com/)
 
 ## Simmilar projects:
 
-- [vue-pdf by TaTo30](https://github.com/TaTo30/vue-pdf)
+-   [vue-pdf by TaTo30](https://github.com/TaTo30/vue-pdf)

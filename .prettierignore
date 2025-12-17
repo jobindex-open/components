@@ -4,3 +4,15 @@ dist/
 pnpm-lock.yaml
 package-lock.json
 *.lock
+
+# Vitest coverage
+**/coverage/
+
+# Monorepo
+.changeset/
+.turbo/
+
+# Devenv
+.direnv/
+.devenv/
+.pre-commit-config.yaml
