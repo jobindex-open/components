@@ -13,7 +13,6 @@ export type LoggerConfig = {
 };
 
 const defaultLoggerConfig: LoggerConfig = {
-    name: undefined,
     minLevel: LogLevel.Info,
     silence: false,
 };
