@@ -1,7 +1,7 @@
 {
     "name": "@jobindex/pdf-viewer",
     "type": "module",
-    "version": "1.1.1",
+    "version": "1.1.0",
     "description": "A PDF Viewer for Vue3 built with pdf.js",
     "contributors": [
         "David Koch Gregersen <dkg@tuta.io> (https://github.com/hyenabyte)"
