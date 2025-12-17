@@ -926,6 +926,11 @@
   resolved "https://registry.yarnpkg.com/@tsconfig/node20/-/node20-20.1.8.tgz#a11034b1f3362ffaeb7255f6c975040d8a395d70"
   integrity sha512-Em+IdPfByIzWRRpqWL4Z7ArLHZGxmc36BxE3jCz9nBFSm+5aLaPMZyjwu4yetvyKXeogWcxik4L1jB5JTWfw7A==
 
+"@tsconfig/strictest@^2.0.8":
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/@tsconfig/strictest/-/strictest-2.0.8.tgz#d6be87c11d29370357cd27d1cdedf97c979103d5"
+  integrity sha512-XnQ7vNz5HRN0r88GYf1J9JJjqtZPiHt2woGJOo2dYqyHGGcd6OLGqSlBB6p1j9mpzja6Oe5BoPqWmeDx6X9rLw==
+
 "@types/chai@^5.2.2":
   version "5.2.2"
   resolved "https://registry.yarnpkg.com/@types/chai/-/chai-5.2.2.tgz#6f14cea18180ffc4416bc0fd12be05fdd73bdd6b"
@@ -1336,13 +1341,13 @@
     tinyrainbow "^3.0.3"
     ws "^8.18.3"
 
-"@vitest/coverage-v8@4.0.14":
-  version "4.0.14"
-  resolved "https://registry.yarnpkg.com/@vitest/coverage-v8/-/coverage-v8-4.0.14.tgz#1d8da6604dedb343c0bda7359a3d6b1ea97b290e"
-  integrity sha512-EYHLqN/BY6b47qHH7gtMxAg++saoGmsjWmAq9MlXxAz4M0NcHh9iOyKhBZyU4yxZqOd8Xnqp80/5saeitz4Cng==
+"@vitest/coverage-v8@4.0.16":
+  version "4.0.16"
+  resolved "https://registry.yarnpkg.com/@vitest/coverage-v8/-/coverage-v8-4.0.16.tgz#375fa0c1cbb357443628a1fcbf694154dfee9561"
+  integrity sha512-2rNdjEIsPRzsdu6/9Eq0AYAzYdpP6Bx9cje9tL3FE5XzXRQF1fNU9pe/1yE8fCrS0HD+fBtt6gLPh6LI57tX7A==
   dependencies:
     "@bcoe/v8-coverage" "^1.0.2"
-    "@vitest/utils" "4.0.14"
+    "@vitest/utils" "4.0.16"
     ast-v8-to-istanbul "^0.3.8"
     istanbul-lib-coverage "^3.2.2"
     istanbul-lib-report "^3.0.1"
@@ -1374,17 +1379,17 @@
     estree-walker "^3.0.3"
     magic-string "^0.30.21"
 
-"@vitest/pretty-format@4.0.14":
-  version "4.0.14"
-  resolved "https://registry.yarnpkg.com/@vitest/pretty-format/-/pretty-format-4.0.14.tgz#ea47e561008298f0fa6ab2e56f35f18d9130b1e8"
-  integrity sha512-SOYPgujB6TITcJxgd3wmsLl+wZv+fy3av2PpiPpsWPZ6J1ySUYfScfpIt2Yv56ShJXR2MOA6q2KjKHN4EpdyRQ==
-  dependencies:
-    tinyrainbow "^3.0.3"
-
 "@vitest/pretty-format@4.0.15":
   version "4.0.15"
   resolved "https://registry.yarnpkg.com/@vitest/pretty-format/-/pretty-format-4.0.15.tgz#2cd8e1bcb4fc8e24124d889a23d1140aecca5744"
   integrity sha512-SWdqR8vEv83WtZcrfLNqlqeQXlQLh2iilO1Wk1gv4eiHKjEzvgHb2OVc3mIPyhZE6F+CtfYjNlDJwP5MN6Km7A==
+  dependencies:
+    tinyrainbow "^3.0.3"
+
+"@vitest/pretty-format@4.0.16":
+  version "4.0.16"
+  resolved "https://registry.yarnpkg.com/@vitest/pretty-format/-/pretty-format-4.0.16.tgz#91893e0337dbdd6f80a89bcc9710c0d03650f090"
+  integrity sha512-eNCYNsSty9xJKi/UdVD8Ou16alu7AYiS2fCPRs0b1OdhJiV89buAXQLpTbe+X8V9L6qrs9CqyvU7OaAopJYPsA==
   dependencies:
     tinyrainbow "^3.0.3"
 
@@ -1410,14 +1415,6 @@
   resolved "https://registry.yarnpkg.com/@vitest/spy/-/spy-4.0.15.tgz#57987c857c3f1bcea5513b379e8dfc8f06b37b8f"
   integrity sha512-+EIjOJmnY6mIfdXtE/bnozKEvTC4Uczg19yeZ2vtCz5Yyb0QQ31QWVQ8hswJ3Ysx/K2EqaNsVanjr//2+P3FHw==
 
-"@vitest/utils@4.0.14":
-  version "4.0.14"
-  resolved "https://registry.yarnpkg.com/@vitest/utils/-/utils-4.0.14.tgz#67eeb19012e1bcbe853303100ae52690a09f4726"
-  integrity sha512-hLqXZKAWNg8pI+SQXyXxWCTOpA3MvsqcbVeNgSi8x/CSN2wi26dSzn1wrOhmCmFjEvN9p8/kLFRHa6PI8jHazw==
-  dependencies:
-    "@vitest/pretty-format" "4.0.14"
-    tinyrainbow "^3.0.3"
-
 "@vitest/utils@4.0.15":
   version "4.0.15"
   resolved "https://registry.yarnpkg.com/@vitest/utils/-/utils-4.0.15.tgz#2e36d5c34656a1ce1a057d8595a835bff524f1bc"
@@ -1426,12 +1423,12 @@
     "@vitest/pretty-format" "4.0.15"
     tinyrainbow "^3.0.3"
 
-"@vitest/utils@4.0.14":
-  version "4.0.14"
-  resolved "https://registry.yarnpkg.com/@vitest/utils/-/utils-4.0.14.tgz#67eeb19012e1bcbe853303100ae52690a09f4726"
-  integrity sha512-hLqXZKAWNg8pI+SQXyXxWCTOpA3MvsqcbVeNgSi8x/CSN2wi26dSzn1wrOhmCmFjEvN9p8/kLFRHa6PI8jHazw==
+"@vitest/utils@4.0.16":
+  version "4.0.16"
+  resolved "https://registry.yarnpkg.com/@vitest/utils/-/utils-4.0.16.tgz#f789a4ef5c5b2e8eef90a4c3304678dbc6c92599"
+  integrity sha512-h8z9yYhV3e1LEfaQ3zdypIrnAg/9hguReGZoS7Gl0aBG5xgA410zBqECqmaF/+RkTggRsfnzc1XaAHA6bmUufA==
   dependencies:
-    "@vitest/pretty-format" "4.0.14"
+    "@vitest/pretty-format" "4.0.16"
     tinyrainbow "^3.0.3"
 
 "@volar/language-core@2.4.23":
