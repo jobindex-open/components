@@ -79,12 +79,12 @@
     "devDependencies": {
         "@jobindex/common": "*",
         "@jobindex/config-ts": "*",
-        "@types/node": "^25.0.2",
+        "@types/node": "^25.0.9",
         "@vitejs/plugin-vue": "^6.0.3",
-        "@vitest/coverage-v8": "4.0.16",
+        "@vitest/coverage-v8": "4.0.17",
         "typescript": "^5.9.2",
-        "vite": "^7.2.7",
-        "vitest": "^4.0.15",
-        "vue-tsc": "^3.1.8"
+        "vite": "^7.3.1",
+        "vitest": "^4.0.17",
+        "vue-tsc": "^3.2.2"
     }
 }
