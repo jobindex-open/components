@@ -155,7 +155,7 @@ onMounted(() => {
         });
 
     useIntersectionObserver(
-        container.value!,
+        container,
         controller.viewportElement,
         (entries) => {
             entries.forEach((entry) => {

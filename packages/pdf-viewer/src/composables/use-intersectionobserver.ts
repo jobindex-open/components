@@ -1,8 +1,8 @@
 import { onMounted, onUnmounted, watch, type Ref } from 'vue';
 
 export const useIntersectionObserver = (
-    target: Ref<HTMLElement | null>,
-    container: Ref<HTMLElement | null>,
+    target: Ref<HTMLElement | undefined>,
+    container: Ref<HTMLElement | undefined>,
     callback: IntersectionObserverCallback
 ) => {
     let observer: IntersectionObserver | null = null;
