@@ -1,5 +1,11 @@
 # @jobindex/pdf-viewer
 
+## 1.1.2
+
+### Patch Changes
+
+- d249ca3: Adding tests, minor type changes
+
 ## 1.1.1
 
 ### Patch Changes
