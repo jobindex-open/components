@@ -26,7 +26,7 @@
         system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
-          playwright-version = "1.56.1";
+          playwright-version = "1.57.0";
           playwright-port = "3010";
         in
         {
