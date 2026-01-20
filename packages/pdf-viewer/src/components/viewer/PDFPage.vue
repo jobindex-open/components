@@ -1,5 +1,4 @@
 <script setup lang="ts">
-/// <reference types="../../../../../node_modules/.vue-global-types/vue_3.5_0.d.ts" />
 import type { PDFDocumentProxy, PDFPageProxy, RenderTask } from 'pdfjs-dist';
 import { computed, onMounted, onUnmounted, ref, shallowRef, watch } from 'vue';
 import { useIntersectionObserver } from '../../composables/use-intersectionobserver';
