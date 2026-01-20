@@ -111,6 +111,9 @@ jobs:
                   restore-keys: |
                       ${{ runner.os }}-turbo-
 
+            - name: Build
+              run: turbo run build --cache-dir=".turbo"
+
             - name: Run tests
               run: turbo run test --cache-dir=".turbo"
 
