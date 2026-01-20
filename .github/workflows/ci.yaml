@@ -112,7 +112,7 @@ jobs:
                       ${{ runner.os }}-turbo-
 
             - name: Build
-              run: turbo run build --cache-dir=".turbo"
+              run: turbo run build build:types --cache-dir=".turbo"
 
             - name: Run tests
               run: turbo run test --cache-dir=".turbo"
