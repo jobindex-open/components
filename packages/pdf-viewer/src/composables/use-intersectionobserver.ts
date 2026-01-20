@@ -1,30 +1,41 @@
-import { watch, type Ref } from 'vue';
+import { onMounted, onUnmounted, watch, type Ref } from 'vue';
 
 export const useIntersectionObserver = (
-    target: HTMLElement,
-    container: Ref<HTMLElement | undefined>,
+    target: Ref<HTMLElement | null>,
+    container: Ref<HTMLElement | null>,
     callback: IntersectionObserverCallback
 ) => {
-    let _cleanup = () => {};
-    watch(
-        container,
-        () => {
-            _cleanup();
-            if (!container.value) return;
+    let observer: IntersectionObserver | null = null;
 
-            const observer = new IntersectionObserver(callback, {
-                root: container.value,
-            });
+    const createObserver = () => {
+        if (!target.value || !container.value) return;
 
-            observer.observe(target);
+        observer = new IntersectionObserver(callback, {
+            root: container.value,
+        });
 
-            _cleanup = () => {
-                observer.disconnect();
-                _cleanup = () => {};
-            };
-        },
-        { immediate: true, flush: 'post' }
-    );
+        observer.observe(target.value);
+    };
 
-    return { watch };
+    const cleanup = () => {
+        if (observer) {
+            observer.disconnect();
+            observer = null;
+        }
+    };
+
+    onMounted(() => {
+        createObserver();
+    });
+
+    onUnmounted(() => {
+        cleanup();
+    });
+
+    watch(container, () => {
+        cleanup();
+        createObserver();
+    });
+
+    return { cleanup };
 };

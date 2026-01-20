@@ -114,6 +114,47 @@ jobs:
             - name: Run tests
               run: turbo run test --cache-dir=".turbo"
 
+    browser-test:
+        name: Test Browser Mode (Node ${{ matrix.node-version }})
+        runs-on: ubuntu-latest
+        # needs: build
+
+        strategy:
+            matrix:
+                node-version: [20.x, 22.x, 24.x]
+
+        steps:
+            - uses: actions/checkout@v5
+
+            - name: Pre-install yarn
+              run: npm install -g yarn
+
+            - name: Install turbo
+              run: npm install -g turbo
+
+            - name: Setup Node
+              uses: actions/setup-node@v6
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: 'yarn'
+
+            - name: Install dependencies
+              run: yarn install --frozen-lockfile
+
+            - name: Install playwright browsers
+              run: yarn playwright install
+
+            - name: Cache Turbo
+              uses: actions/cache@v4
+              with:
+                  path: .turbo
+                  key: ${{ runner.os }}-turbo-${{ hashFiles('**/*.ts') }}
+                  restore-keys: |
+                      ${{ runner.os }}-turbo-
+
+            - name: Run tests
+              run: turbo run test:browser --cache-dir=".turbo"
+
     # coverage:
     #     name: Coverage
     #     runs-on: ubuntu-latest

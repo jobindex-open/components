@@ -17,7 +17,7 @@ const defaultLoggerConfig: LoggerConfig = {
     silence: false,
 };
 
-export const createLogger = (config: Partial<LoggerConfig>) => {
+export const createLogger = (config?: Partial<LoggerConfig>) => {
     const _config = {
         ...defaultLoggerConfig,
         ...config,

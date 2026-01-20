@@ -52,15 +52,32 @@ as well as a few handy tools and automatic setup of git hooks.
 
 To enter the shell use (requires nix-flakes and nix-command enabled):
 
-```
+```sh
 nix develop
 ```
 
 or if you have direnv installed you can allow this project using:
 
-```
+```sh
 direnv allow
 ```
+
+#### Playwright browser tests
+
+Playwright isn't supported on NixOS and getting it working was a headache, so this projects `flake.nix`
+provides a docker based playwright server. It requires docker to be installed on the system.
+
+When in a development shell the ENV variable `PW_TEST_CONNECT_WS_ENDPOINT` is set, informing vitest to
+connect to the the provided playwright server. NB.: this overrides the normal behavior and wont allow
+playwright to connect to servers run normally.
+
+To run the playwright server, you can from inside a development shell run the following command:
+
+```sh
+sudo playwright-server
+```
+
+The running process can be terminated with `ctrl+c`.
 
 ### Creating new components
 

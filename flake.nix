@@ -26,6 +26,8 @@
         system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
+          playwright-version = "1.57.0";
+          playwright-port = "3010";
         in
         {
           default = devenv.lib.mkShell {
@@ -40,7 +42,6 @@
 
                   # Tools
                   gh
-                  nodePackages.prettier
                   turbo
                   act
                   npm-check
@@ -64,6 +65,20 @@
                     };
                   };
                   nixfmt-rfc-style.enable = true;
+                };
+
+                env.PW_TEST_CONNECT_WS_ENDPOINT = "ws://127.0.0.1:${playwright-port}/";
+
+                scripts = {
+                  # Run playwright browsers in a docker container
+                  playwright-server.exec = ''
+                    docker run -p ${playwright-port}:${playwright-port} \
+                     --rm --init -it \
+                     --workdir /home/pwuser \
+                     mcr.microsoft.com/playwright:v${playwright-version}-noble \
+                     /bin/sh -c \
+                     "npx -y playwright@${playwright-version} run-server --port ${playwright-port} --host 0.0.0.0"
+                  '';
                 };
               }
             ];

@@ -1,6 +1,19 @@
 {
     "extends": "@jobindex/config-ts/tsconfig.vue.json",
-    "include": [".", "vite.config.ts"],
+    "include": [
+        ".",
+        "vite.config.ts",
+        "vitest.config.ts",
+        "vitest.browser.config.ts"
+    ],
     "exclude": ["node_modules", "dist", "build"],
+    "compilerOptions": {
+        "baseUrl": ".",
+        "types": ["vitest-browser-vue"],
+        "paths": {
+            "@src/*": ["src/*"],
+            "@test/": ["test/*"]
+        }
+    },
     "$schema": "https://json.schemastore.org/tsconfig"
 }
