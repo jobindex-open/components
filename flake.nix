@@ -59,7 +59,10 @@
                   eslint.enable = true;
                   prettier = {
                     enable = true;
-                    settings.configPath = ".prettierrc";
+                    settings = {
+                      binPath = "./node_modules/.bin/prettier";
+                      configPath = "./.prettierrc";
+                    };
                   };
                   nixfmt-rfc-style.enable = true;
                 };

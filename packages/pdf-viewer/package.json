@@ -1,7 +1,7 @@
 {
     "name": "@jobindex/pdf-viewer",
     "type": "module",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "description": "A PDF Viewer for Vue3 built with pdf.js",
     "contributors": [
         "David Koch Gregersen <dkg@tuta.io> (https://github.com/hyenabyte)"
@@ -39,8 +39,29 @@
         "access": "public"
     },
     "files": [
-        "dist",
-        "README.md"
+        "package.json",
+        "README.md",
+        "LICENSE",
+        "src/**/*.ts",
+        "dist/**/*.js",
+        "dist/**/*.js.map",
+        "dist/**/*.cjs",
+        "dist/**/*.cjs.map",
+        "dist/**/*.d.ts",
+        "dist/**/*.d.ts.map",
+        "dist/**/*.css",
+        "!src/test/",
+        "!src/**/*.test.ts",
+        "!src/**/*.spec.ts",
+        "!dist/test/",
+        "!dist/**/*.test.js",
+        "!dist/**/*.spec.js",
+        "!dist/**/*.test.js.map",
+        "!dist/**/*.spec.js.map",
+        "!dist/**/*.test.d.ts",
+        "!dist/**/*.spec.d.ts",
+        "!dist/**/*.test.d.ts.map",
+        "!dist/**/*.spec.d.ts.map"
     ],
     "scripts": {
         "build": "vite build",
@@ -57,27 +78,27 @@
         "vue": "^3.5.0"
     },
     "dependencies": {
-        "pdfjs-dist": "^5.4.394"
+        "pdfjs-dist": "^5.4.449"
     },
     "devDependencies": {
         "@jobindex/common": "*",
         "@jobindex/config-ts": "*",
-        "@types/node": "^24.10.0",
-        "@vitejs/plugin-vue": "^6.0.1",
         "@vitest/browser": "^4.0.9",
         "@vitest/browser-playwright": "^4.0.9",
-        "@vitest/coverage-v8": "^4.0.12",
         "@vue/language-server": "^3.0.6",
         "@vue/test-utils": "^2.4.6",
         "@vue/typescript-plugin": "^3.0.6",
         "jsdom": "^27.2.0",
         "playwright": "^1.56.1",
-        "typescript": "^5.9.2",
         "typescript-eslint": "^8.42.0",
-        "vite": "^7.2.2",
         "vite-tsconfig-paths": "^5.1.4",
-        "vitest": "^4.0.9",
         "vitest-browser-vue": "^2.0.1",
-        "vue-tsc": "^3.1.3"
+        "@types/node": "^25.0.2",
+        "@vitejs/plugin-vue": "^6.0.3",
+        "@vitest/coverage-v8": "4.0.16",
+        "typescript": "^5.9.2",
+        "vite": "^7.2.7",
+        "vitest": "^4.0.15",
+        "vue-tsc": "^3.1.8"
     }
 }

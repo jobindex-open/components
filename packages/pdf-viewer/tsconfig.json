@@ -14,5 +14,6 @@
             "@src/*": ["src/*"],
             "@test/": ["test/*"]
         }
-    }
+    },
+    "$schema": "https://json.schemastore.org/tsconfig"
 }
