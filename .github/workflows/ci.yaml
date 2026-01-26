@@ -127,7 +127,7 @@ jobs:
                 node-version: [20.x, 22.x, 24.x]
 
         steps:
-            - uses: actions/checkout@v5
+            - uses: actions/checkout@v6
 
             - name: Pre-install yarn
               run: npm install -g yarn
@@ -148,7 +148,7 @@ jobs:
               run: yarn playwright install
 
             - name: Cache Turbo
-              uses: actions/cache@v4
+              uses: actions/cache@v5
               with:
                   path: .turbo
                   key: ${{ runner.os }}-turbo-${{ hashFiles('**/*.ts') }}
