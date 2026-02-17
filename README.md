@@ -1,17 +1,8 @@
 # Jobindex Components
 
-## What is it?
+This is a collection of frontend components and libraries, developed in house at Jobindex.
 
-This repo contains a library of frontend components and libraries created by Jobindex.
-
-## Structure
-
-This repo is a monorepo using turborepo.
-
-There are two main places to place code:
-
-- `apps/`: Contains standalone apps
-- `packages/`: Contains libraries to be consumed by other apps
+## Contents
 
 ### Apps
 
@@ -25,6 +16,17 @@ There are two main places to place code:
 
 - [`config-ts`](/packages/config-ts): Contains various tsconfig files
 - [`common`](/packages/common): A utility library meant for common use for other packages.
+
+## Structure
+
+This repository is a monorepo, managed with turbo-repo.
+
+There are two main places to place code:
+
+- `apps/`: Contains standalone apps
+- `packages/`: Contains libraries to be consumed by other apps
+
+See [Contents](#contents) for what packages are currently available.
 
 ## Development
 
@@ -45,40 +47,6 @@ Avaliable commands using `yarn [command]`:
 - `clean`: Removes build outputs
 - `format`: Format project using prettier
 
-### Developing using Nix
-
-A flake config provides a handy development shell that provides all needed dependencies,
-as well as a few handy tools and automatic setup of git hooks.
-
-To enter the shell use (requires nix-flakes and nix-command enabled):
-
-```sh
-nix develop
-```
-
-or if you have direnv installed you can allow this project using:
-
-```sh
-direnv allow
-```
-
-#### Playwright browser tests
-
-Playwright isn't supported on NixOS and getting it working was a headache, so this projects `flake.nix`
-provides a docker based playwright server. It requires docker to be installed on the system.
-
-When in a development shell the ENV variable `PW_TEST_CONNECT_WS_ENDPOINT` is set, informing vitest to
-connect to the the provided playwright server. NB.: this overrides the normal behavior and wont allow
-playwright to connect to servers run normally.
-
-To run the playwright server, you can from inside a development shell run the following command:
-
-```sh
-sudo playwright-server
-```
-
-The running process can be terminated with `ctrl+c`.
-
 ### Creating new components
 
 To create a new component just create a subfolder in `packages/` (or `/app` if creating a standalone app),
@@ -94,7 +62,9 @@ yarn create vite my-vite-project --template vue-ts
 cd my-vite-project
 ```
 
-The project will automatically be picked up by yarn and turbo
+The project will automatically be picked up by yarn and turbo.
+
+Make sure to add an entry in [Contents](#contents) in this README, linking to your new app or package.
 
 #### Naming
 
@@ -170,11 +140,45 @@ One pitfall to be wary of is that since the local packages aren't published anyw
 they aren't versioned (beyond being part of the git repo) so there is currently
 no easy way of a project to depend on an old version of a local package.
 
-### Writing tests
+## Testing
 
 This repo uses `vitest` for testing.
 
 (WIP)
+
+## Developing using Nix
+
+A flake config provides a handy development shell that provides all needed dependencies,
+as well as a few handy tools and automatic setup of git hooks.
+
+To enter the shell use (requires nix-flakes and nix-command enabled):
+
+```sh
+nix develop
+```
+
+or if you have direnv installed you can allow this project using:
+
+```sh
+direnv allow
+```
+
+### Playwright browser tests
+
+Playwright isn't supported on NixOS and getting it working was a headache, so this projects `flake.nix`
+provides a docker based playwright server. It requires docker to be installed on the system.
+
+When in a development shell the ENV variable `PW_TEST_CONNECT_WS_ENDPOINT` is set, informing vitest to
+connect to the the provided playwright server. NB.: this overrides the normal behavior and wont allow
+playwright to connect to servers run normally.
+
+To run the playwright server, you can from inside a development shell run the following command:
+
+```sh
+sudo playwright-server
+```
+
+The running process can be terminated with `ctrl+c`.
 
 ## Contributing
 
@@ -182,6 +186,8 @@ Pull requests are welcome.
 Please open an issue for larger changes.
 
 Please make sure to format your code before committing by running `yarn format`, or set up a prettier git hook.
+
+Consider following conventional commit message formatting ([https://www.conventionalcommits.org/en/v1.0.0/]).
 
 ## License
 
