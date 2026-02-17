@@ -1,0 +1,27 @@
+{
+    "name": "@jobindex/config-eslint",
+    "private": true,
+    "version": "1.0.0",
+    "license": "MIT",
+    "publishConfig": {
+        "access": "public"
+    },
+    "exports": {
+        "./base.config": "./base.config.mjs",
+        "./vue.config": "./vue.config.mjs"
+    },
+    "devDependencies": {
+        "@eslint/js": "^10.0.1",
+        "@vitest/eslint-plugin": "^1.6.9",
+        "@vue/eslint-config-typescript": "^14.7.0",
+        "eslint": "^10.0.0",
+        "eslint-config-prettier": "^10.1.8",
+        "eslint-config-turbo": "^2.8.9",
+        "eslint-plugin-turbo": "^2.8.9",
+        "eslint-plugin-vue": "^10.8.0",
+        "globals": "^17.3.0",
+        "typescript": "^5.9.3",
+        "typescript-eslint": "^8.56.0",
+        "vue-eslint-parser": "^10.4.0"
+    }
+}

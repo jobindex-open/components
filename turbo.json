@@ -2,10 +2,12 @@
     "$schema": "https://turborepo.com/schema.json",
     "tasks": {
         "test": {
-            "dependsOn": ["^test"]
+            "dependsOn": ["^test"],
+            "env": ["PW_TEST_CONNECT_WS_ENDPOINT"]
         },
         "test:browser": {
-            "dependsOn": ["^test:browser"]
+            "dependsOn": ["^test:browser"],
+            "env": ["PW_TEST_CONNECT_WS_ENDPOINT"]
         },
         "coverage": {
             "outputs": ["coverage/**"],
