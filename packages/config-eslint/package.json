@@ -8,7 +8,8 @@
     },
     "exports": {
         "./base.config.mjs": "./base.config.mjs",
-        "./vue.config.mjs": "./vue.config.mjs"
+        "./vue.config.mjs": "./vue.config.mjs",
+        "./ts.config.mjs": "./ts.config.mjs"
     },
     "devDependencies": {
         "@eslint/js": "^10.0.1",
