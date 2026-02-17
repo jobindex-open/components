@@ -11,10 +11,7 @@ export default defineConfig({
             '@jobindex/pdf-viewer':
                 process.env.NODE_ENV === 'production'
                     ? '@jobindex/pdf-viewer'
-                    : resolve(
-                          __dirname,
-                          '../../packages/pdf-viewer/src/index.ts'
-                      ),
+                    : resolve(__dirname, '../../packages/pdf-viewer/src/'),
         },
     },
     build: {
