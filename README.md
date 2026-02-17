@@ -113,8 +113,7 @@ Have a look at `turbo.json` to get an idea of what scripts are available.
 
 #### Common configs
 
-The repo provides some local packages specificly for configuration, such as `tsconfig.json` templates and
-(WIP) eslint configurations.
+The repo provides some local packages specificly for configuration, such as `tsconfig.json` templates and eslint configurations.
 
 Project templates for getting set up with a fully featured project is on the roadmap.
 
