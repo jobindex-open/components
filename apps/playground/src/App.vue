@@ -25,7 +25,7 @@ const workerUrl = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/5.4.149/pdf.wor
                 height: '900px',
             }"
             :pdf="customPdfLoader"
-            :pdfjsWorker="workerUrl"
+            :pdfjs-worker="workerUrl"
         />
 
         <h2 class="text-xl mt-4 mb-2">Custom toolbar</h2>
@@ -37,7 +37,7 @@ const workerUrl = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/5.4.149/pdf.wor
             :controller="controller"
             pdf="/example2.pdf"
         >
-            <template v-slot:toolbar>
+            <template #toolbar>
                 <div
                     class="w-full h-12 bg-purple-500 flex gap-4 items-center justify-between px-4"
                 >

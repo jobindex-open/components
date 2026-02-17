@@ -22,7 +22,8 @@
         },
         "build": {
             "outputs": ["dist/**"],
-            "dependsOn": ["^build"]
+            "dependsOn": ["^build"],
+            "env": ["NODE_ENV"]
         },
         "build:types": {
             "dependsOn": ["^build:types"],
@@ -30,7 +31,8 @@
         },
         "dev": {
             "persistent": true,
-            "cache": false
+            "cache": false,
+            "env": ["NODE_ENV"]
         }
     }
 }
