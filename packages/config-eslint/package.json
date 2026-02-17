@@ -7,8 +7,8 @@
         "access": "public"
     },
     "exports": {
-        "./base.config": "./base.config.mjs",
-        "./vue.config": "./vue.config.mjs"
+        "./base.config.mjs": "./base.config.mjs",
+        "./vue.config.mjs": "./vue.config.mjs"
     },
     "devDependencies": {
         "@eslint/js": "^10.0.1",

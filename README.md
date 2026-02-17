@@ -15,6 +15,7 @@ This is a collection of frontend components and libraries, developed in house at
 #### Internal
 
 - [`config-ts`](/packages/config-ts): Contains various tsconfig files
+- [`config-eslint`](/packages/config-eslint): Contains eslint configurations
 - [`common`](/packages/common): A utility library meant for common use for other packages.
 
 ## Structure
