@@ -84,7 +84,7 @@
         "@jobindex/common": "*",
         "@jobindex/config-ts": "*",
         "@jobindex/config-eslint": "*",
-        "@vue/language-server": "^3.2.4",
+        "@vue/language-server": "^3.2.5",
         "@vue/test-utils": "^2.4.6",
         "@vue/typescript-plugin": "^3.0.6",
         "jsdom": "^28.0.0",
@@ -92,8 +92,8 @@
         "typescript-eslint": "^8.53.1",
         "vite-tsconfig-paths": "^6.1.1",
         "vitest-browser-vue": "^2.0.2",
-        "@types/node": "^25.2.3",
+        "@types/node": "^25.3.0",
         "typescript": "^5.9.2",
-        "vue-tsc": "^3.2.4"
+        "vue-tsc": "^3.2.5"
     }
 }
