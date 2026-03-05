@@ -56,14 +56,6 @@
                 languages.typescript.enable = true;
 
                 git-hooks.hooks = {
-                  eslint.enable = true;
-                  prettier = {
-                    enable = true;
-                    settings = {
-                      binPath = "./node_modules/.bin/prettier";
-                      configPath = "./.prettierrc";
-                    };
-                  };
                   nixfmt-rfc-style.enable = true;
                 };
 
