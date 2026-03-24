@@ -1,0 +1,113 @@
+import { createLogger, LogLevel } from '@jobindex/common/lib/logger.ts';
+import type { HTTPMethod } from '@jobindex/common/types.js';
+import { GenericCache } from './cache/generic-cache';
+import { LRUEvictionStrategy } from './cache/eviction-strategies/lru.strategy';
+
+export interface CachedAPIConfig {
+    url?: URL | string | undefined;
+    cacheKey: string;
+    ttl: number;
+    headers?: Record<string, string>;
+    minLogLevel?: LogLevel;
+}
+
+export abstract class CachedAPI {
+    private config: CachedAPIConfig;
+    private cache: GenericCache<Response>;
+    private logger: ReturnType<typeof createLogger>;
+
+    constructor(config: CachedAPIConfig) {
+        this.logger = createLogger({
+            name: 'cached-api::CachedAPI',
+            minLevel: config.minLogLevel ?? LogLevel.Warn,
+        });
+        this.config = config;
+
+        this.cache = new GenericCache<Response>({
+            autoClean: true,
+            limitSize: true,
+            evictionStrategy: new LRUEvictionStrategy(),
+        });
+
+        this.logger.debug('new instance created', { config: this.config });
+    }
+
+    protected async request(
+        url: string,
+        method: HTTPMethod = 'GET',
+        data?: object,
+        headers?: Record<string, string>
+    ) {
+        this.logger.trace('request', { url, method, data, headers });
+
+        const controller = new AbortController();
+
+        const hasBody = !(method === 'GET' || method === 'HEAD');
+
+        const fullUrl = hasBody ? this.buildUrl(url) : this.buildUrl(url, data);
+
+        const request = new Request(fullUrl, {
+            method,
+            headers: this.buildHeaders(headers),
+            signal: controller.signal,
+            body: hasBody ? JSON.stringify(data) : null,
+        });
+
+        const responsePromise = new Promise(async () => {
+            const cachedResponse = await this.cache?.match(request);
+
+            if (!cachedResponse) {
+                this.logger.debug('Cache miss', request);
+                const response = await fetch(request);
+                this.cache?.put(request, response);
+                return response;
+            } else {
+                this.logger.debug('Cache hit', request);
+            }
+
+            return cachedResponse;
+        });
+
+        return {
+            result: this.promiseToResult(responsePromise),
+            controller,
+        };
+    }
+
+    private buildUrl(url: string, params?: object): URL {
+        this.logger.trace('buildUrl', { url, params });
+        const path = url.startsWith('/') ? url : `/${url}/`;
+        const fullUrl = `${this.config.url}${path}`;
+
+        const urlObject = new URL(fullUrl, window.location.origin);
+
+        if (!params) {
+            return urlObject;
+        }
+
+        Object.entries(params).forEach(([key, value]) => {
+            if (value !== null) {
+                urlObject.searchParams.append(key, value);
+            }
+        });
+
+        return urlObject;
+    }
+
+    private buildHeaders(headers?: Record<string, string>): HeadersInit {
+        this.logger.trace('buildHeaders', { headers });
+        return {
+            ...this.config.headers,
+            ...headers,
+        };
+    }
+
+    private async promiseToResult<T>(promise: Promise<T>) {
+        this.logger.trace('promiseToResult');
+        try {
+            return { data: await promise };
+        } catch (error) {
+            return { error: error as Error };
+        }
+    }
+}
