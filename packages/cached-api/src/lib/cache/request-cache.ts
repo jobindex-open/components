@@ -3,44 +3,42 @@ import { serializeRequest } from '../util/serialization';
 import { Md5 } from 'ts-md5';
 
 export class RequestCache extends GenericCache<Response> {
-    /**
-     * Do a cached request
-     */
-    public async cachedRequest(
-        url: string,
-        options?: Partial<{
-            ttl: number;
-            forceRefresh: boolean;
-            headers: Record<string, string>;
-            controller: AbortController;
-        }>
+    public override get(idOrRequest: string | Request) {
+        const _key = this.toKey(idOrRequest);
+
+        return super.get(_key);
+    }
+
+    public override set(
+        idOrRequest: string | Request,
+        value: Response,
+        ttl?: number
     ) {
-        const reqInit: RequestInit = {};
+        const _key = this.toKey(idOrRequest);
 
-        if (options?.headers) {
-            reqInit.headers = options.headers;
-        }
+        return super.set(_key, value, ttl);
+    }
 
-        if (options?.controller) {
-            reqInit.signal = options.controller.signal;
-        }
+    public override has(idOrRequest: string | Request) {
+        const _key = this.toKey(idOrRequest);
 
-        const request = new Request(url, reqInit);
+        return super.has(_key);
+    }
 
-        const key = this.createKey(request);
+    public override touch(idOrRequest: string | Request, ttl?: number) {
+        const _key = this.toKey(idOrRequest);
 
-        if (!options?.forceRefresh) {
-            const cached = this.get(key);
-            if (cached) return { response: cached, fromCache: true };
-        }
+        return super.touch(_key, ttl);
+    }
 
-        const response = await fetch(request);
+    public getCacheKey(request: Request) {
+        return this.createKey(request);
+    }
 
-        const ttl = options?.ttl ?? this.ttl;
-
-        this.set(key, response, ttl);
-
-        return { response, fromCache: false };
+    private toKey(idOrRequest: string | Request) {
+        return typeof idOrRequest === 'string'
+            ? idOrRequest
+            : this.createKey(idOrRequest);
     }
 
     private createKey(request: Request) {

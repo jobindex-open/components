@@ -20,7 +20,7 @@ describe('GenericCache', () => {
         cache.set('item1', item1);
 
         expect(cache.get('item1'), 'Get item1').toStrictEqual(item1);
-        expect(cache.get('item2'), 'Get item2: invalid item').toBeUndefined();
+        expect(cache.get('item2'), 'Get item2: invalid item').toBeNull();
     });
 
     test('has()', () => {
@@ -32,6 +32,46 @@ describe('GenericCache', () => {
 
         expect(cache.has('item1'), 'Has item1').toBeTruthy();
         expect(cache.has('item2'), 'Has item2: invalid item').toBeFalsy();
+    });
+
+    test('touch()', () => {
+        const cache = new GenericCache();
+
+        const item1 = { message: 'hello' };
+        const item2 = { message: 'hello, world' };
+        const item3 = { message: 'hi' };
+
+        cache.set('item1', item1, 2000);
+        cache.set('item2', item2, 2000);
+        cache.set('item3', item3, 2000);
+
+        cache.touch('item3', 500);
+
+        expect(cache.has('item1'), 'Has item1').toBeTruthy();
+        expect(cache.has('item2'), 'Has item2').toBeTruthy();
+        expect(cache.has('item3'), 'Has item3').toBeTruthy();
+
+        vi.advanceTimersByTime(1000);
+
+        expect(cache.has('item1'), 'Has item1').toBeTruthy();
+        expect(cache.has('item2'), 'Has item2').toBeTruthy();
+        expect(
+            cache.has('item3'),
+            'item3 had its ttl altered by touch and is expired'
+        ).toBeFalsy();
+
+        cache.touch('item1', 2000);
+
+        vi.advanceTimersByTime(1100);
+
+        expect(
+            cache.has('item1'),
+            'item1 was touched and still in cache'
+        ).toBeTruthy();
+        expect(
+            cache.has('item2'),
+            'item2 was not touched and is expired'
+        ).toBeFalsy();
     });
 
     test('clear()', () => {

@@ -1,187 +1,79 @@
-import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
+import { beforeEach, describe, expect, test, vi } from 'vitest';
 import { RequestCache } from '../../../src/lib/cache/request-cache';
 
 describe('RequestCache', () => {
-    const fetch = vi.fn();
-
     beforeEach(() => {
-        vi.stubGlobal('fetch', fetch);
-        vi.useFakeTimers();
         vi.clearAllMocks();
     });
 
-    afterEach(() => {
-        vi.unstubAllGlobals();
-        vi.clearAllTimers();
-        vi.useRealTimers();
+    test('get()', async () => {
+        const cache = new RequestCache();
+
+        const request = new Request('http://example.com');
+
+        const response = new Response('Hello, world!', { status: 200 });
+
+        expect(
+            cache.get(request),
+            'No response in cache for the request'
+        ).toBeNull();
+
+        cache.set(request, response);
+
+        expect(cache.get(request), 'Response cached').toStrictEqual(response);
     });
 
-    const createFetchResponse = (data: unknown) => {
-        return { json: () => new Promise((resolve) => resolve(data)) };
-    };
+    test('has()', async () => {
+        const cache = new RequestCache();
 
-    test('Normal cache behavior', async () => {
-        const fetchResponse = createFetchResponse([
-            {
-                status: 'ok',
-            },
-        ]);
+        const request = new Request('http://example.com');
 
-        fetch.mockResolvedValue(fetchResponse);
-        const requestCache = new RequestCache();
-
-        const expectedResult1 = {
-            response: fetchResponse,
-            fromCache: false,
-        };
-
-        const result1 = await requestCache.cachedRequest('localhost:8000');
+        const response = new Response('Hello, world!', { status: 200 });
 
         expect(
-            fetch,
-            'Request not in cache; fetch is called'
-        ).toHaveBeenCalledOnce();
+            cache.has(request),
+            'No response in cache for the request'
+        ).toBeFalsy();
 
-        expect(result1, 'Response, not from cache').toStrictEqual(
-            expectedResult1
-        );
+        cache.set(request, response);
 
-        const expectedResult2 = {
-            response: fetchResponse,
-            fromCache: true,
-        };
-
-        const result2 = await requestCache.cachedRequest('localhost:8000');
-
-        expect(
-            fetch,
-            'Request in cache; fetch has still only been called once'
-        ).toHaveBeenCalledOnce();
-
-        expect(result2, 'Response, from cache').toStrictEqual(expectedResult2);
-
-        const expectedResult3 = {
-            response: fetchResponse,
-            fromCache: false,
-        };
-
-        const result3 = await requestCache.cachedRequest(
-            'localhost:8000/other'
-        );
-
-        expect(
-            fetch,
-            'Request not in cache; fetch called'
-        ).toHaveBeenCalledTimes(2);
-
-        expect(result3, 'Request is different, not in cache').toStrictEqual(
-            expectedResult3
-        );
+        expect(cache.has(request), 'Response cached').toBeTruthy();
     });
 
-    test('Force refresh', async () => {
-        const fetchResponse = createFetchResponse([
-            {
-                status: 'ok',
-            },
-        ]);
+    test('touch()', async () => {
+        const cache = new RequestCache();
 
-        fetch.mockResolvedValue(fetchResponse);
-        const requestCache = new RequestCache();
+        const request = new Request('http://example.com');
 
-        const expectedResult1 = {
-            response: fetchResponse,
-            fromCache: false,
-        };
+        const response = new Response('Hello, world!', { status: 200 });
 
-        const result1 = await requestCache.cachedRequest('localhost:8000');
+        cache.set(request, response);
+        cache.touch(request);
 
-        expect(
-            fetch,
-            'Request not in cache; fetch is called'
-        ).toHaveBeenCalledOnce();
-
-        expect(result1, 'Response, not from cache').toStrictEqual(
-            expectedResult1
-        );
-
-        const expectedResult2 = {
-            response: fetchResponse,
-            fromCache: false,
-        };
-
-        const result2 = await requestCache.cachedRequest('localhost:8000', {
-            forceRefresh: true,
-        });
-
-        expect(
-            fetch,
-            'Force network, cache is skipped; fetch is called'
-        ).toHaveBeenCalledTimes(2);
-
-        expect(
-            result2,
-            'Response with force refresh, not from cache'
-        ).toStrictEqual(expectedResult2);
+        expect(cache.has(request)).toBeTruthy();
     });
 
-    test('Set TTL', async () => {
-        const fetchResponse = createFetchResponse([
-            {
-                status: 'ok',
-            },
-        ]);
+    test('getCacheKey()', () => {
+        const cache = new RequestCache();
+        const request1 = new Request('http://example.com');
+        const request2 = new Request('http://example.com/path/to/page');
 
-        fetch.mockResolvedValue(fetchResponse);
-        const requestCache = new RequestCache();
+        const response = new Response('Hello, world!', { status: 200 });
 
-        const expectedResult1 = {
-            response: fetchResponse,
-            fromCache: false,
-        };
+        expect(cache.getCacheKey(request1)).toBe(
+            'fcd5eeff3edafcc32a574684e245aa85'
+        );
 
-        const result1 = await requestCache.cachedRequest('localhost:8000', {
-            ttl: 1000,
-        });
+        expect(cache.getCacheKey(request2)).toBe(
+            'd4f5e91857fcb08ed05be2a55bccd533'
+        );
 
+        cache.set(request1, response);
+
+        expect(cache.has(request1), 'Lookup by request').toBeTruthy();
         expect(
-            fetch,
-            'Request not in cache; fetch is called'
-        ).toHaveBeenCalledOnce();
-
-        expect(result1, 'Response, not from cache').toStrictEqual(
-            expectedResult1
-        );
-
-        const expectedResult2 = {
-            response: fetchResponse,
-            fromCache: true,
-        };
-
-        vi.advanceTimersByTime(500);
-
-        const result2 = await requestCache.cachedRequest('localhost:8000');
-
-        expect(fetch, 'Cache hit; fetch not called').toHaveBeenCalledOnce();
-
-        expect(result2, 'Response after 500ms, request in cache').toStrictEqual(
-            expectedResult2
-        );
-
-        const expectedResult3 = {
-            response: fetchResponse,
-            fromCache: false,
-        };
-
-        vi.advanceTimersByTime(1500);
-        const result3 = await requestCache.cachedRequest('localhost:8000');
-
-        expect(fetch, 'Cache expired, fetch is called').toHaveBeenCalledTimes(
-            2
-        );
-
-        expect(result3, 'Response after 1500ms, cache is stale').toStrictEqual(
-            expectedResult3
-        );
+            cache.has('fcd5eeff3edafcc32a574684e245aa85'),
+            'Lookup by key'
+        ).toBeTruthy();
     });
 });

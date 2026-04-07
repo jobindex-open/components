@@ -91,14 +91,14 @@ export class GenericCache<T, K = string> {
         const entry = this.cache.get(key);
         if (!entry) {
             this.stats.increment('misses');
-            return undefined;
+            return null;
         }
 
         if (this.isStale(entry)) {
             if (this.removeStale) this.remove(key);
             this.stats.increment('misses');
             this.stats.increment('expirations');
-            return undefined;
+            return null;
         }
 
         this.stats.increment('hits');
@@ -156,7 +156,7 @@ export class GenericCache<T, K = string> {
     }
 
     /**
-     * Update TTL at runtime.
+     * Set a new default ttl.
      */
     public setTTL(ttlMs: number | undefined) {
         this.ttl = ttlMs || 0;
