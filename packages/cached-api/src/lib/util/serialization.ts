@@ -1,10 +1,13 @@
 /**
  * Serialize an object to a string
  */
-export const serialize = (value: unknown, sepparator: string = '\n') => {
+export const serialize = (
+    value: unknown,
+    sepparator: string = '\n'
+): string => {
     return value && typeof value === 'object'
         ? Object.entries(value)
-              .map(([idx, val]): any => [idx, serialize(val)])
+              .map(([idx, val]) => [idx, serialize(val)])
               .sort()
               .join(sepparator)
         : String(value);

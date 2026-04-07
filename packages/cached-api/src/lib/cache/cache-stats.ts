@@ -1,12 +1,8 @@
-export class CacheStats implements Iterable<[string, number]> {
+export class CacheStats {
     private statMap: Map<string, number>;
 
     constructor() {
         this.statMap = new Map();
-    }
-
-    [Symbol.iterator]() {
-        return this.statMap.entries();
     }
 
     public forEach(callbackFn: (value: number, key: string) => void) {

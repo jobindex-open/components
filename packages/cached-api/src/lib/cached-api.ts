@@ -1,7 +1,7 @@
 import { createLogger, LogLevel } from '@jobindex/common/lib/logger.ts';
 import type { HTTPMethod } from '@jobindex/common/types.js';
-import { GenericCache } from './cache/generic-cache';
 import { LRUEvictionStrategy } from './cache/eviction-strategies/lru.strategy';
+import { RequestCache } from './cache/request-cache';
 
 export interface CachedAPIConfig {
     url?: URL | string | undefined;
@@ -13,7 +13,7 @@ export interface CachedAPIConfig {
 
 export abstract class CachedAPI {
     private config: CachedAPIConfig;
-    private cache: GenericCache<Response>;
+    private cache: RequestCache;
     private logger: ReturnType<typeof createLogger>;
 
     constructor(config: CachedAPIConfig) {
@@ -23,7 +23,7 @@ export abstract class CachedAPI {
         });
         this.config = config;
 
-        this.cache = new GenericCache<Response>({
+        this.cache = new RequestCache({
             autoClean: true,
             limitSize: true,
             evictionStrategy: new LRUEvictionStrategy(),
@@ -36,7 +36,8 @@ export abstract class CachedAPI {
         url: string,
         method: HTTPMethod = 'GET',
         data?: object,
-        headers?: Record<string, string>
+        headers?: Record<string, string>,
+        options?: { forceNetwork: boolean }
     ) {
         this.logger.trace('request', { url, method, data, headers });
 
@@ -54,12 +55,12 @@ export abstract class CachedAPI {
         });
 
         const responsePromise = new Promise(async () => {
-            const cachedResponse = await this.cache?.match(request);
+            const cachedResponse = this.cache.get(request);
 
-            if (!cachedResponse) {
+            if (!cachedResponse || options?.forceNetwork) {
                 this.logger.debug('Cache miss', request);
                 const response = await fetch(request);
-                this.cache?.put(request, response);
+                this.cache.set(request, response);
                 return response;
             } else {
                 this.logger.debug('Cache hit', request);
