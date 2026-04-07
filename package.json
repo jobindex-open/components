@@ -17,7 +17,7 @@
         "packages/*"
     ],
     "dependencies": {
-        "vue": "^3.5.29"
+        "vue": "^3.5.32"
     },
     "devDependencies": {
         "@changesets/cli": "^2.30.0",
