@@ -1,7 +1,7 @@
 {
     "name": "jobindex-components-workspace",
     "private": true,
-    "packageManager": "yarn@1.22.22",
+    "packageManager": "pnpm@10.0.0",
     "scripts": {
         "dev": "turbo run dev",
         "test": "turbo run test",
@@ -12,10 +12,6 @@
         "release": "changeset publish",
         "prepare": "husky"
     },
-    "workspaces": [
-        "apps/*",
-        "packages/*"
-    ],
     "dependencies": {
         "vue": "^3.5.32"
     },
@@ -29,7 +25,8 @@
         "@vitest/coverage-v8": "^4.1.4",
         "@vue/language-server": "^3.2.6",
         "@vue/tsconfig": "^0.9.1",
-        "@vue/typescript-plugin": "^3.0.6",
+        "@vue/typescript-plugin": "^3.2.6",
+        "eslint": "^10.2.0",
         "globals": "^17.4.0",
         "husky": "^9.1.7",
         "lint-staged": "^16.4.0",
@@ -46,5 +43,6 @@
     "lint-staged": {
         "*.(jsx?|tsx?|vue|md|s?css)": "prettier --write",
         "*.(jsx?|tsx?|vue)": "eslint --fix"
-    }
+    },
+    "$schema": "https://www.schemastore.org/package.json"
 }

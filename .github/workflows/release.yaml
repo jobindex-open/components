@@ -22,21 +22,21 @@ jobs:
               with:
                   fetch-depth: 2
 
-            - name: Pre-install yarn
-              run: npm install -g yarn
+            - name: Pre-install pnpm
+              run: npm install -g pnpm
 
             - name: Setup Node
               uses: actions/setup-node@v6
               with:
                   node-version: 24
-                  cache: 'yarn'
+                  cache: 'pnpm'
                   registry-url: https://registry.npmjs.org
 
             - name: Install
-              run: yarn install --frozen-lockfile
+              run: pnpm install --frozen-lockfile
 
             - name: Build production bundle
-              run: yarn build
+              run: pnpm build
 
             - name: Install latest version of npm
               run: npm install -g npm@latest
