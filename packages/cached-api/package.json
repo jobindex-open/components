@@ -1,0 +1,70 @@
+{
+    "name": "@jobindex/cached-api",
+    "type": "module",
+    "version": "0.1.0",
+    "description": "A cached API client",
+    "contributors": [
+        "David Koch Gregersen <dkg@tuta.io> (https://github.com/hyenabyte)"
+    ],
+    "license": "BSD-3-Clause",
+    "homepage": "https://github.com/jobindex-open/components",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jobindex-open/components.git",
+        "directory": "packages/pdf-viewer"
+    },
+    "bugs": {
+        "url": "https://github.com/jobindex-open/components/issues"
+    },
+    "exports": {
+        "./*": "./src/*",
+        "./package.json": "./package.json"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "files": [
+        "package.json",
+        "README.md",
+        "LICENSE",
+        "src/**/*.ts",
+        "dist/**/*.js",
+        "dist/**/*.js.map",
+        "dist/**/*.cjs",
+        "dist/**/*.cjs.map",
+        "dist/**/*.d.ts",
+        "dist/**/*.d.ts.map",
+        "dist/**/*.css",
+        "!src/test/",
+        "!src/**/*.test.ts",
+        "!src/**/*.spec.ts",
+        "!dist/test/",
+        "!dist/**/*.test.js",
+        "!dist/**/*.spec.js",
+        "!dist/**/*.test.js.map",
+        "!dist/**/*.spec.js.map",
+        "!dist/**/*.test.d.ts",
+        "!dist/**/*.spec.d.ts",
+        "!dist/**/*.test.d.ts.map",
+        "!dist/**/*.spec.d.ts.map"
+    ],
+    "scripts": {
+        "build": "tsdown",
+        "lint": "eslint --max-warnings 0",
+        "test:watch": "vitest",
+        "test": "vitest run",
+        "coverage": "vitest run --coverage",
+        "clean": "rimraf ./dist ./coverage"
+    },
+    "devDependencies": {
+        "@jobindex/common": "*",
+        "@jobindex/config-eslint": "*",
+        "@jobindex/config-ts": "*",
+        "@types/node": "^25.3.3",
+        "ts-md5": "^2.0.1",
+        "tsdown": "^0.21.4",
+        "typescript": "^5.9.2",
+        "vite": "^7.3.1",
+        "vitest": "^4.0.18"
+    }
+}
