@@ -31,15 +31,15 @@ See [Contents](#contents) for what packages are currently available.
 
 ## Development
 
-To get started you need yarn 1.22.22 installed on your system.
+To get started you need pnpm installed on your system.
 
 Clone the repo to your computer and run the following command to install dependencies
 
 ```sh
-yarn
+pnpm i
 ```
 
-Avaliable commands using `yarn [command]`:
+Avaliable commands using `pnpm [command]`:
 
 - `dev`: Start the playground app to get started developing
 - `test`: Run the test suite
@@ -58,12 +58,12 @@ For example to create a new vite project:
 ```sh
 cd packages
 
-yarn create vite my-vite-project --template vue-ts
+pnpm create vite my-vite-project --template vue-ts
 
 cd my-vite-project
 ```
 
-The project will automatically be picked up by yarn and turbo.
+The project will automatically be picked up by pnpm and turbo.
 
 Make sure to add an entry in [Contents](#contents) in this README, linking to your new app or package.
 
@@ -75,10 +75,18 @@ in front of the package name, for example: `@jobindex/my-vite-project`.
 #### Targeting projects
 
 To do things like installing dependencies or running scripts on your new project, you can specify
-the workspace when running yarn. For example:
+the workspace when running pnpm.
+
+For example to install a package:
 
 ```sh
-yarn workspace @jobindex/my-vite-project add [package]
+pnpm add [package] --filter @jobindex/my-vite-project
+```
+
+or to run a script:
+
+```sh
+pnpm --filter @jobindex/my-vite-project dev
 ```
 
 #### Scripts
@@ -185,7 +193,7 @@ The running process can be terminated with `ctrl+c`.
 Pull requests are welcome.
 Please open an issue for larger changes.
 
-Please make sure to format your code before committing by running `yarn format`, or set up a prettier git hook.
+Please make sure to format your code before committing by running `pnpm format`, or set up a prettier git hook.
 
 Consider following [conventional commit message formatting](https://www.conventionalcommits.org/en/v1.0.0/).
 

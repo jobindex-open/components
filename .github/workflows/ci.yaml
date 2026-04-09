@@ -17,8 +17,8 @@ jobs:
         steps:
             - uses: actions/checkout@v6
 
-            - name: Pre-install yarn
-              run: npm install -g yarn
+            - name: Pre-install pnpm
+              run: npm install -g pnpm
 
             - name: Install turbo
               run: npm install -g turbo
@@ -27,10 +27,10 @@ jobs:
               uses: actions/setup-node@v6
               with:
                   node-version: 22.x
-                  cache: 'yarn'
+                  cache: 'pnpm'
 
             - name: Install dependencies
-              run: yarn install --frozen-lockfile
+              run: pnpm install --frozen-lockfile
 
             - name: Cache Turbo
               uses: actions/cache@v5
@@ -50,8 +50,8 @@ jobs:
     #     steps:
     #         - uses: actions/checkout@v6
 
-    #         - name: Pre-install yarn
-    #           run: npm install -g yarn
+    #         - name: Pre-install pnpm
+    #           run: npm install -g pnpm
 
     #         - name: Install turbo
     #           run: npm install -g turbo
@@ -60,10 +60,10 @@ jobs:
     #           uses: actions/setup-node@v6
     #           with:
     #               node-version: 22.x
-    #               cache: 'yarn'
+    #               cache: 'pnpm'
 
     #         - name: Install dependencies
-    #           run: yarn install --frozen-lockfile
+    #           run: pnpm install --frozen-lockfile
 
     #         - name: Cache Turbo
     #           uses: actions/cache@v5
@@ -88,8 +88,8 @@ jobs:
         steps:
             - uses: actions/checkout@v6
 
-            - name: Pre-install yarn
-              run: npm install -g yarn
+            - name: Pre-install pnpm
+              run: npm install -g pnpm
 
             - name: Install turbo
               run: npm install -g turbo
@@ -98,10 +98,10 @@ jobs:
               uses: actions/setup-node@v6
               with:
                   node-version: ${{ matrix.node-version }}
-                  cache: 'yarn'
+                  cache: 'pnpm'
 
             - name: Install dependencies
-              run: yarn install --frozen-lockfile
+              run: pnpm install --frozen-lockfile
 
             - name: Cache Turbo
               uses: actions/cache@v5
@@ -129,8 +129,8 @@ jobs:
         steps:
             - uses: actions/checkout@v6
 
-            - name: Pre-install yarn
-              run: npm install -g yarn
+            - name: Pre-install pnpm
+              run: npm install -g pnpm
 
             - name: Install turbo
               run: npm install -g turbo
@@ -139,13 +139,13 @@ jobs:
               uses: actions/setup-node@v6
               with:
                   node-version: ${{ matrix.node-version }}
-                  cache: 'yarn'
+                  cache: 'pnpm'
 
             - name: Install dependencies
-              run: yarn install --frozen-lockfile
+              run: pnpm install --frozen-lockfile
 
             - name: Install playwright browsers
-              run: yarn playwright install
+              run: pnpm playwright install
 
             - name: Cache Turbo
               uses: actions/cache@v5
@@ -166,8 +166,8 @@ jobs:
     #     steps:
     #         - uses: actions/checkout@v6
 
-    #         - name: Pre-install yarn
-    #           run: npm install -g yarn
+    #         - name: Pre-install pnpm
+    #           run: npm install -g pnpm
 
     #         - name: Install turbo
     #           run: npm install -g turbo
@@ -176,10 +176,10 @@ jobs:
     #           uses: actions/setup-node@v6
     #           with:
     #               node-version: 22.x
-    #               cache: 'yarn'
+    #               cache: 'pnpm'
 
     #         - name: Install dependencies
-    #           run: yarn install --frozen-lockfile
+    #           run: pnpm install --frozen-lockfile
 
     #         - name: Cache Turbo
     #           uses: actions/cache@v5

@@ -18,8 +18,8 @@
         "clean": "rimraf ./dist ./coverage"
     },
     "devDependencies": {
-        "@jobindex/config-ts": "*",
-        "@jobindex/config-eslint": "*",
+        "@jobindex/config-ts": "workspace:*",
+        "@jobindex/config-eslint": "workspace:*",
         "@types/node": "^25.5.2",
         "typescript": "^6.0.2",
         "vite": "^8.0.8",

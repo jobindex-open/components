@@ -81,9 +81,9 @@
         "pdfjs-dist": "^5.6.205"
     },
     "devDependencies": {
-        "@jobindex/common": "*",
-        "@jobindex/config-ts": "*",
-        "@jobindex/config-eslint": "*",
+        "@jobindex/common": "workspace:*",
+        "@jobindex/config-ts": "workspace:*",
+        "@jobindex/config-eslint": "workspace:*",
         "@vue/language-server": "^3.2.6",
         "@vue/test-utils": "^2.4.6",
         "@vue/typescript-plugin": "^3.0.6",
