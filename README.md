@@ -187,7 +187,7 @@ Please open an issue for larger changes.
 
 Please make sure to format your code before committing by running `yarn format`, or set up a prettier git hook.
 
-Consider following conventional commit message formatting ([https://www.conventionalcommits.org/en/v1.0.0/]).
+Consider following [conventional commit message formatting](https://www.conventionalcommits.org/en/v1.0.0/).
 
 ## License
 
