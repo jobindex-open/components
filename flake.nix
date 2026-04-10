@@ -56,7 +56,7 @@
                 languages.typescript.enable = true;
 
                 git-hooks.hooks = {
-                  nixfmt-rfc-style.enable = true;
+                  nixfmt.enable = true;
                 };
 
                 env.PW_TEST_CONNECT_WS_ENDPOINT = "ws://127.0.0.1:${playwright-port}/";
