@@ -32,7 +32,7 @@ export abstract class CachedAPI {
         this.logger.debug('new instance created', { config: this.config });
     }
 
-    protected async request(
+    protected request(
         url: string,
         method: HTTPMethod = 'GET',
         data?: object,
@@ -54,19 +54,22 @@ export abstract class CachedAPI {
             body: hasBody ? JSON.stringify(data) : null,
         });
 
-        const responsePromise = new Promise(async () => {
+        const responsePromise = new Promise((resolve, reject) => {
             const cachedResponse = this.cache.get(request);
 
-            if (!cachedResponse || options?.forceNetwork) {
-                this.logger.debug('Cache miss', request);
-                const response = await fetch(request);
-                this.cache.set(request, response);
-                return response;
-            } else {
+            if (cachedResponse && !options?.forceNetwork) {
                 this.logger.debug('Cache hit', request);
+                resolve(cachedResponse);
+                return;
             }
 
-            return cachedResponse;
+            this.logger.debug('Cache miss', request);
+            fetch(request)
+                .then((response) => {
+                    this.cache.set(request, response);
+                    resolve(response);
+                })
+                .catch((e: Error) => reject(e));
         });
 
         return {
@@ -87,7 +90,7 @@ export abstract class CachedAPI {
         }
 
         Object.entries(params).forEach(([key, value]) => {
-            if (value !== null) {
+            if (value !== null && typeof value === 'string') {
                 urlObject.searchParams.append(key, value);
             }
         });
