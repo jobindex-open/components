@@ -1,5 +1,14 @@
 version: 2
 updates:
+    - package-ecosystem: 'nix'
+      directory: '/'
+      schedule:
+          interval: 'weekly'
+      groups:
+          actions-deps:
+              patterns:
+                  - '*'
+
     - package-ecosystem: 'github-actions'
       directory: '/'
       schedule:
