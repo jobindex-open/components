@@ -92,7 +92,7 @@
         "typescript-eslint": "^8.58.1",
         "vite-tsconfig-paths": "^6.1.1",
         "vitest-browser-vue": "^2.1.0",
-        "@types/node": "^25.5.2",
+        "@types/node": "^25.6.0",
         "typescript": "^6.0.2",
         "vue-tsc": "^3.2.6"
     }
