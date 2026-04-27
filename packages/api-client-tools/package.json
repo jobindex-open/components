@@ -1,8 +1,8 @@
 {
-    "name": "@jobindex/cached-api",
+    "name": "@jobindex/api-client-tool",
     "type": "module",
     "version": "0.1.0",
-    "description": "A cached API client",
+    "description": "Tools for building easy to use performant API clients",
     "contributors": [
         "David Koch Gregersen <dkg@tuta.io> (https://github.com/hyenabyte)"
     ],
