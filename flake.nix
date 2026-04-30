@@ -36,7 +36,7 @@
               {
                 packages = with pkgs; [
                   # Language servers
-                  nodePackages.typescript-language-server
+                  typescript-language-server
                   vue-language-server
                   yaml-language-server
 
