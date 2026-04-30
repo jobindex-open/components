@@ -44,3 +44,9 @@ export const debounce = (
 
     return { debounced, cancel };
 };
+
+export const isCallable = <T>(
+    maybeFunction: T | unknown
+): maybeFunction is T => {
+    return typeof maybeFunction === 'function';
+};
