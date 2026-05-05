@@ -4,6 +4,29 @@ import { defineComponent } from 'vue';
 import { usePDF } from '@src/composables';
 import { getDocument, type PDFDocumentLoadingTask } from 'pdfjs-dist';
 
+// Mock pdfjs-dist
+vi.mock('pdfjs-dist', async () => {
+    /**
+     * Use a legacy import here to prevent DOMMatrix undefined error
+     *
+     * @see https://github.com/mozilla/pdf.js/discussions/19847#discussioncomment-13101813
+     */
+    const mod = await import('pdfjs-dist/legacy/build/pdf.mjs');
+
+    return {
+        ...mod,
+        getDocument: vi.fn(),
+    };
+});
+
+// Mock logger
+vi.mock('@jobindex/common/lib/logger.ts', () => ({
+    createLogger: () => ({
+        debug: vi.fn(),
+        info: vi.fn(),
+    }),
+}));
+
 describe('usePDF', () => {
     type MockLoadingTask = {
         promise: Promise<unknown>;
@@ -13,29 +36,6 @@ describe('usePDF', () => {
 
     let mockTask: MockLoadingTask;
     let mockDocument: { numPages: number; destroy: () => Promise<void> };
-
-    // Mock pdfjs-dist
-    vi.mock('pdfjs-dist', async () => {
-        /**
-         * Use a legacy import here to prevent DOMMatrix undefined error
-         *
-         * @see https://github.com/mozilla/pdf.js/discussions/19847#discussioncomment-13101813
-         */
-        const mod = await import('pdfjs-dist/legacy/build/pdf.mjs');
-
-        return {
-            ...mod,
-            getDocument: vi.fn(),
-        };
-    });
-
-    // Mock logger
-    vi.mock('@jobindex/common/lib/logger.ts', () => ({
-        createLogger: () => ({
-            debug: vi.fn(),
-            info: vi.fn(),
-        }),
-    }));
 
     beforeEach(() => {
         vi.resetAllMocks();
