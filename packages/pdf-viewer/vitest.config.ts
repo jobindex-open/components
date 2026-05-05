@@ -3,7 +3,7 @@ import { playwright } from '@vitest/browser-playwright';
 import vue from '@vitejs/plugin-vue';
 import type { PlaywrightProviderOptions } from '@vitest/browser-playwright';
 
-const playwrightEndpoint = process.env.PW_TEST_CONNECT_WS_ENDPOINT;
+const playwrightEndpoint = process.env['PW_TEST_CONNECT_WS_ENDPOINT'];
 const playwrightConfig: PlaywrightProviderOptions = playwrightEndpoint
     ? {
           connectOptions: {

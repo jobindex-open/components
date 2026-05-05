@@ -5,7 +5,7 @@ import {
 } from '@vitest/browser-playwright';
 import vue from '@vitejs/plugin-vue';
 
-const playwrightEndpoint = process.env.PW_TEST_CONNECT_WS_ENDPOINT;
+const playwrightEndpoint = process.env['PW_TEST_CONNECT_WS_ENDPOINT'];
 const playwrightConfig: PlaywrightProviderOptions = playwrightEndpoint
     ? {
           connectOptions: {
