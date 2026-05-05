@@ -4,7 +4,6 @@ import {
     playwright,
 } from '@vitest/browser-playwright';
 import vue from '@vitejs/plugin-vue';
-import tsconfigPaths from 'vite-tsconfig-paths';
 
 const playwrightEndpoint = process.env.PW_TEST_CONNECT_WS_ENDPOINT;
 const playwrightConfig: PlaywrightProviderOptions = playwrightEndpoint
@@ -17,7 +16,10 @@ const playwrightConfig: PlaywrightProviderOptions = playwrightEndpoint
     : {};
 
 export default defineConfig({
-    plugins: [vue(), tsconfigPaths()],
+    plugins: [vue()],
+    resolve: {
+        tsconfigPaths: true
+    },
     test: {
         include: [
             'test/browser/**/*.{test,spec}.ts',
