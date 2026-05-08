@@ -50,7 +50,7 @@
                 languages.javascript = {
                   enable = true;
                   npm.enable = true;
-                  yarn.enable = true;
+                  pnpm.enable = true;
                 };
 
                 languages.typescript.enable = true;
