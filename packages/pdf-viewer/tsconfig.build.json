@@ -1,24 +1,15 @@
 {
     "extends": "@jobindex/config-ts/tsconfig.vue-lib.json",
-    "exclude": [
-        "node_modules",
-        "dist",
-        "build"
-    ],
+    "exclude": ["node_modules", "dist", "build"],
     "compilerOptions": {
         "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
         "declarationDir": "./dist/types",
         "declarationMap": true,
         "rootDir": "src",
         "outDir": "./dist",
-        "types": [
-            "vite/client"
-        ]
+        "types": ["vite/client"],
+        "skipLibCheck": true
     },
-    "include": [
-        "src/**/*.ts",
-        "src/**/*.tsx",
-        "src/**/*.vue"
-    ],
+    "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"],
     "$schema": "https://json.schemastore.org/tsconfig"
 }
