@@ -84,15 +84,15 @@
         "@jobindex/common": "workspace:*",
         "@jobindex/config-ts": "workspace:*",
         "@jobindex/config-eslint": "workspace:*",
-        "@vue/language-server": "^3.2.8",
+        "@vue/language-server": "^3.2.9",
         "@vue/test-utils": "^2.4.10",
-        "@vue/typescript-plugin": "^3.0.6",
+        "@vue/typescript-plugin": "^3.2.9",
         "jsdom": "^29.1.1",
         "playwright": "^1.60.0",
         "typescript-eslint": "^8.59.3",
         "vitest-browser-vue": "^2.1.0",
-        "@types/node": "^25.7.0",
+        "@types/node": "^25.8.0",
         "typescript": "^6.0.3",
-        "vue-tsc": "^3.2.8"
+        "vue-tsc": "^3.2.9"
     }
 }
