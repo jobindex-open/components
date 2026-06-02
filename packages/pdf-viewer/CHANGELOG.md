@@ -1,5 +1,11 @@
 # @jobindex/pdf-viewer
 
+## 1.1.4
+
+### Patch Changes
+
+- f0cf392: update dependencies
+
 ## 1.1.3
 
 ### Patch Changes
