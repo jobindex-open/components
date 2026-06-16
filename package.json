@@ -20,7 +20,7 @@
         "@tsconfig/node20": "^20.1.9",
         "@types/node": "^25.9.1",
         "@vitejs/plugin-vue": "^6.0.7",
-        "@vitest/browser": "^4.1.7",
+        "@vitest/browser": "^4.1.8",
         "@vitest/browser-playwright": "^4.1.7",
         "@vitest/coverage-v8": "^4.1.7",
         "@vue/language-server": "^3.3.2",
