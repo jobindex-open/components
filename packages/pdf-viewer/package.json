@@ -84,7 +84,7 @@
         "@jobindex/common": "workspace:*",
         "@jobindex/config-eslint": "workspace:*",
         "@jobindex/config-ts": "workspace:*",
-        "@types/node": "^25.9.1",
+        "@types/node": "^26.0.0",
         "@vue/language-server": "^3.3.2",
         "@vue/test-utils": "^2.4.10",
         "@vue/typescript-plugin": "^3.3.2",
