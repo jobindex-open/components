@@ -49,6 +49,16 @@ updates:
               dependency-type: 'production'
 
     - package-ecosystem: 'npm'
+      directory: '/packages/config-eslint'
+      schedule:
+          interval: 'weekly'
+      groups:
+          config-eslint-dev:
+              dependency-type: 'development'
+          config-eslint-prod:
+              dependency-type: 'production'
+
+    - package-ecosystem: 'npm'
       directory: '/apps/playground'
       schedule:
           interval: 'weekly'
