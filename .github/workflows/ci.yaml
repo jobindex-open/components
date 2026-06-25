@@ -15,7 +15,7 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - uses: actions/checkout@v6
+            - uses: actions/checkout@v7
 
             - name: Pre-install pnpm
               run: npm install -g pnpm
@@ -48,7 +48,7 @@ jobs:
     #     runs-on: ubuntu-latest
 
     #     steps:
-    #         - uses: actions/checkout@v6
+    #         - uses: actions/checkout@v7
 
     #         - name: Pre-install pnpm
     #           run: npm install -g pnpm
@@ -86,7 +86,7 @@ jobs:
                 node-version: [22.x, 24.x]
 
         steps:
-            - uses: actions/checkout@v6
+            - uses: actions/checkout@v7
 
             - name: Pre-install pnpm
               run: npm install -g pnpm
@@ -127,7 +127,7 @@ jobs:
                 node-version: [22.x, 24.x]
 
         steps:
-            - uses: actions/checkout@v6
+            - uses: actions/checkout@v7
 
             - name: Pre-install pnpm
               run: npm install -g pnpm
@@ -164,7 +164,7 @@ jobs:
     #     needs: build
 
     #     steps:
-    #         - uses: actions/checkout@v6
+    #         - uses: actions/checkout@v7
 
     #         - name: Pre-install pnpm
     #           run: npm install -g pnpm
